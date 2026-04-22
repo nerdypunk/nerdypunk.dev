@@ -62,12 +62,20 @@
               </div>
               <div class="blog-stream">
                 <article class="blog-post" id="entry-back-to-simplicity">
-                  <div class="blog-post__meta">APRIL 22, 2026 // RANDOM THOUGHTS</div>
+                  <div class="blog-post__topbar">
+                    <div class="blog-post__meta">APRIL 22, 2026 // RANDOM THOUGHTS</div>
+                    <button class="blog-post__share" type="button" data-share-post="entry-back-to-simplicity" aria-label="Copy link to this post">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M15 5a3 3 0 1 1 .1 1.999l-6.36 3.18a3 3 0 0 1 0 3.642l6.36 3.18a3 3 0 1 1-.89 1.79l-6.67-3.335a3 3 0 1 1 0-6.914l6.67-3.335A3 3 0 0 1 15 5Z"/>
+                      </svg>
+                      <span>Share</span>
+                    </button>
+                  </div>
                   <h2>Back to simplicity - A case for more personal websites</h2>
                   <p>In these last few months, I've been trying to wrap my head around where the internet has taken us. I've always been an optimist regarding technology, but I can't help but feel it's also fucking with our minds in ways nobody really anticipated. I think we're always looking for ways to express ourselves, but it feels harder by the day. Most of us feel like we're talking to a void, which may well be true.</p>
                   <p>As a game developer you've got to be active on social media to promote your game, and that takes a toll on your mental health and your attention span. The platform that was fucking with my head the most was Instagram, so I recently deleted it and wanted to put that energy into writing something more personal, something where I'm not thinking about engagement. I feel the need to get back to making stuff just for the sake of it, without worrying about reach. That's what this blog is.</p>
                   <hr class="blog-post__divider">
-                  <p>I wasn't going to build this website from scratch since my main project is my game Spaceman Memories and I needed to move fast, so I decided to try a tool I hadn't used before. I used Codex for this and had a pretty good experience giving instructions to the agent in a more visual way. My inspiration behind this was <a href="https://www.creativebloq.com/news/retro-modern-websites" target="_blank" rel="noreferrer">some article</a> I saw a while ago about reimagining modern websites in the style of the 90s.</p>
+                  <p>I wasn't going to code this website from scratch since my main project is my game Spaceman Memories and I needed to move fast, so I decided to try a tool I hadn't used before. I used Codex for this and had a pretty good experience giving instructions to the agent in a more visual way, at last in my life I felt like a creative director (lol). My inspiration behind this was <a href="https://www.creativebloq.com/news/retro-modern-websites" target="_blank" rel="noreferrer">some article</a> I saw a while ago about reimagining modern websites in the style of the 90s.</p>
                   <div class="blog-post__media-grid">
                     <figure class="blog-post__media">
                       <img src="Images/blog/back-to-simplicity-personal-websites/Screenshot 2026-04-22 135747.png" alt="Early look at the Nerdy Punk blog and homepage layout">
@@ -85,7 +93,15 @@
                   <p>I used those reference images to build something simple that felt like it was from that era, where I could lay out info about me and my game. The whole thing is set up to be hosted for free on GitHub Pages. It was a fun experience and only took about a day of loosely focused work (lol). I think we should all find ways to express ourselves that aren't dictated by algorithms. We shouldn't be measuring the value of our work by how it performs on social platforms, and that's exactly why I'm doing this. I hope I can keep this updated with whatever is on my mind. If you made it this far, thanks for being here. I hope this turns into something worthwhile and maybe even inspires you a little.</p>
                 </article>
                 <article class="blog-post" id="entry-coming-soon">
-                  <div class="blog-post__meta">MORE POSTS // SOON</div>
+                  <div class="blog-post__topbar">
+                    <div class="blog-post__meta">MORE POSTS // SOON</div>
+                    <button class="blog-post__share" type="button" data-share-post="entry-coming-soon" aria-label="Copy link to this post">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M15 5a3 3 0 1 1 .1 1.999l-6.36 3.18a3 3 0 0 1 0 3.642l6.36 3.18a3 3 0 1 1-.89 1.79l-6.67-3.335a3 3 0 1 1 0-6.914l6.67-3.335A3 3 0 0 1 15 5Z"/>
+                      </svg>
+                      <span>Share</span>
+                    </button>
+                  </div>
                   <h2>More Devlogs On The Way</h2>
                   <p>This is the beginning of the blog, so for now there is just one proper entry live. Future posts will keep expanding this page with development updates, screenshots, experiments, and thoughts from the road to release.</p>
                 </article>
@@ -121,8 +137,7 @@
     const lightboxCaption = lightbox?.querySelector('.lightbox__caption');
     const closeTargets = lightbox?.querySelectorAll('[data-lightbox-close]');
     const blogImages = document.querySelectorAll('.blog-post__media img');
-
-    if (!lightbox || !lightboxImage || !lightboxCaption || !blogImages.length) return;
+    const shareButtons = document.querySelectorAll('[data-share-post]');
 
     const closeLightbox = () => {
       lightbox.hidden = true;
@@ -143,28 +158,54 @@
       document.body.classList.add('lightbox-open');
     };
 
-    blogImages.forEach((image) => {
-      image.tabIndex = 0;
-      image.setAttribute('role', 'button');
-      image.setAttribute('aria-label', `${image.alt || 'Blog image'}. Open enlarged view.`);
+    if (lightbox && lightboxImage && lightboxCaption && blogImages.length) {
+      blogImages.forEach((image) => {
+        image.tabIndex = 0;
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', `${image.alt || 'Blog image'}. Open enlarged view.`);
 
-      image.addEventListener('click', () => openLightbox(image));
-      image.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          openLightbox(image);
+        image.addEventListener('click', () => openLightbox(image));
+        image.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openLightbox(image);
+          }
+        });
+      });
+
+      closeTargets.forEach((target) => {
+        target.addEventListener('click', closeLightbox);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !lightbox.hidden) {
+          closeLightbox();
         }
       });
-    });
+    }
 
-    closeTargets.forEach((target) => {
-      target.addEventListener('click', closeLightbox);
-    });
+    shareButtons.forEach((button) => {
+      button.addEventListener('click', async () => {
+        const postId = button.getAttribute('data-share-post');
+        if (!postId) return;
 
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !lightbox.hidden) {
-        closeLightbox();
-      }
+        const shareUrl = `${window.location.origin}${window.location.pathname}#${postId}`;
+        const label = button.querySelector('span');
+        const originalLabel = label ? label.textContent : '';
+
+        try {
+          await navigator.clipboard.writeText(shareUrl);
+          if (label) label.textContent = 'Copied';
+          button.classList.add('is-copied');
+        } catch {
+          window.prompt('Copy this link:', shareUrl);
+        }
+
+        window.setTimeout(() => {
+          if (label) label.textContent = originalLabel;
+          button.classList.remove('is-copied');
+        }, 1800);
+      });
     });
   })();
 </script>
