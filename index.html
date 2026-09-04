@@ -70,7 +70,8 @@
         </div>
 
         <div class="window-content">
-          <section class="hero-panel" id="top">
+          <section class="hero-panel" id="top" aria-labelledby="welcome-title">
+            <div class="panel__title hero-panel__title" id="welcome-title">Welcome Nerds<span class="section-loader section-loader--welcome" aria-hidden="true"></span></div>
             <div class="hero-panel__toprow">
               <div class="hero-panel__masthead">
                 <img class="hero-panel__logo" src="Images/Logo_NerdyPunk.png" alt="Nerdy Punk logo">
@@ -104,22 +105,24 @@
           </section>
 
           <section class="steam-widget panel" aria-labelledby="steam-widget-title">
-            <div class="panel__title" id="steam-widget-title">Steam Widget.exe</div>
+            <div class="panel__title" id="steam-widget-title">Steam Widget.exe<span class="section-loader section-loader--steam" aria-hidden="true"></span></div>
             <div class="panel__body steam-widget__body">
               <div class="steam-widget__layout">
                 <div class="steam-widget__frame">
                   <div class="steam-widget__toolbar" aria-hidden="true">
                     <span>WISHLIST MY GAME ON STEAM</span>
                   </div>
-                  <div class="steam-widget__viewport">
-                    <iframe
-                      src="https://store.steampowered.com/widget/2354580/"
-                      frameborder="0"
-                      width="646"
-                      height="190"
-                      loading="lazy"
-                      title="Steam store widget"
-                    ></iframe>
+                  <div class="steam-card">
+                    <a class="steam-card__header" href="https://store.steampowered.com/app/2354580/" target="_blank" rel="noreferrer">
+                      <span class="steam-card__title">Spaceman Memories <em>on Steam</em></span>
+                      <img class="steam-card__brand" src="assets/social/steam.png" alt="">
+                    </a>
+                    <div class="steam-card__content">
+                      <a href="https://store.steampowered.com/app/2354580/" target="_blank" rel="noreferrer">
+                        <img class="steam-card__capsule" src="Images/steam-capsule.jpg" alt="Spaceman Memories Steam capsule">
+                      </a>
+                      <p>Spaceman Memories is a retro JRPG built by one person who loves old stories. Set in a retro-futuristic Japan haunted by ancient folklore, play as Ichiro-94, an astronaut who wakes from hypersleep to piece together the remnants of a forgotten past full of wonder, nostalgia, and strange spirits.</p>
+                    </div>
                   </div>
                   <div class="steam-widget__actions">
                     <span>AVAILABLE // 2026</span>
@@ -136,7 +139,7 @@
           </section>
 
           <section class="panel social-panel" id="blog" aria-labelledby="blog-entries-title">
-            <div class="panel__title" id="blog-entries-title">BLOG.EXE</div>
+            <div class="panel__title" id="blog-entries-title">BLOG.EXE<span class="section-loader section-loader--blog" aria-hidden="true"></span></div>
             <div class="panel__body social-panel__layout">
               <div class="blog-home-layout">
                 <article class="entry-preview">
@@ -157,7 +160,7 @@
           </section>
 
           <section class="panel contact-panel" id="contact">
-            <div class="panel__title">Contact.exe</div>
+            <div class="panel__title">Contact.exe<span class="section-loader section-loader--contact" aria-hidden="true"></span></div>
             <div class="panel__body contact-copy">
               <p>If you wanna talk just send me a message to</p>
               <p><a href="mailto:whatsup@nerdypunk.dev">whatsup@nerdypunk.dev</a></p>
@@ -165,7 +168,7 @@
           </section>
 
           <section class="panel icon-strip-panel" aria-labelledby="links-strip-title">
-            <div class="panel__title" id="links-strip-title">Links.exe</div>
+            <div class="panel__title" id="links-strip-title">Links.exe<span class="section-loader section-loader--links" aria-hidden="true"></span></div>
             <div class="panel__body icon-strip">
               <a href="https://store.steampowered.com/app/2354580/" target="_blank" rel="noreferrer" aria-label="Steam">
                 <img src="assets/social/steam.png" alt="Steam">

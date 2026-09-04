@@ -274,7 +274,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .panel {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 2px solid var(--line);
   border-radius: var(--radius-panel);
   background: var(--glass);
   box-shadow:
@@ -294,13 +294,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: linear-gradient(120deg, rgba(255,255,255,.055), transparent 24%, transparent 76%, rgba(98,230,255,.025));
 }
 
-.hero-panel { padding: 14px; }
+.hero-panel { padding: 0; }
 
 .hero-panel__toprow {
   display: grid;
   grid-template-columns: minmax(280px, .78fr) minmax(440px, 1.22fr);
   gap: 14px;
   align-items: stretch;
+  margin: 14px;
 }
 
 .hero-panel__masthead {
@@ -432,7 +433,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   align-items: center;
   min-height: 42px;
   padding: 0 16px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 2px solid var(--line);
   color: #dceaff;
   background: rgba(255,255,255,.035);
   font: 500 .72rem/1 var(--font-display);
@@ -456,6 +457,69 @@ button, a { -webkit-tap-highlight-color: transparent; }
   color: #61758a;
   font-size: .57rem;
   letter-spacing: .08em;
+}
+
+.section-loader {
+  --loader-duration: 1.3s;
+  --loader-delay: 0s;
+  position: relative;
+  display: inline-block;
+  width: clamp(48px, 8.5vw, 112px);
+  height: 12px;
+  flex: 0 1 112px;
+  margin-left: 14px;
+  overflow: hidden;
+  background: rgba(47, 31, 110, .72);
+  -webkit-mask: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 6px);
+  mask: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 6px);
+}
+
+.section-loader::before,
+.section-loader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  animation-delay: var(--loader-delay);
+  animation-iteration-count: infinite;
+}
+
+.section-loader::before {
+  background: linear-gradient(90deg, #9bf4ff 0%, #48cfff 34%, #316cec 66%, #a734ff 100%);
+  box-shadow: 0 0 9px rgba(72,207,255,.62);
+  animation-name: sectionLoaderFill;
+  animation-duration: var(--loader-duration);
+  animation-timing-function: steps(18, end);
+}
+
+.section-loader::after {
+  width: 18%;
+  right: auto;
+  background: rgba(237, 252, 255, .72);
+  box-shadow: 0 0 10px rgba(132,232,255,.9);
+  animation-name: sectionLoaderScan;
+  animation-duration: var(--loader-duration);
+  animation-timing-function: steps(18, end);
+}
+
+.section-loader--welcome { --loader-duration: 1.36s; --loader-delay: -.41s; }
+.section-loader--steam   { --loader-duration: 1.07s; --loader-delay: -.18s; }
+.section-loader--blog    { --loader-duration: 1.61s; --loader-delay: -.93s; }
+.section-loader--contact { --loader-duration: 1.23s; --loader-delay: -.67s; }
+.section-loader--links   { --loader-duration: .94s;  --loader-delay: -.36s; }
+.section-loader--archive { --loader-duration: 1.49s; --loader-delay: -.52s; }
+
+@keyframes sectionLoaderFill {
+  0%, 7% { transform: scaleX(.06); opacity: .72; }
+  70%, 84% { transform: scaleX(1); opacity: 1; }
+  85%, 100% { transform: scaleX(.06); opacity: .72; }
+}
+
+@keyframes sectionLoaderScan {
+  0%, 7% { transform: translateX(-110%); opacity: 0; }
+  12% { opacity: .9; }
+  70%, 84% { transform: translateX(560%); opacity: .9; }
+  85%, 100% { transform: translateX(-110%); opacity: 0; }
 }
 
 .panel__body {
@@ -508,15 +572,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .steam-widget__mini-title--blue { border-color: rgba(154,124,255,.2); background: rgba(154,124,255,.07); }
-
-.steam-widget__frame iframe {
-  display: block;
-  width: 100%;
-  height: 190px;
-  border: 0;
-  border-radius: 8px;
-  background: #0b111f;
-}
 
 .steam-widget__support {
   display: grid;
@@ -841,7 +896,8 @@ body.lightbox-open { overflow: hidden; }
   .desktop { padding: 10px 7px; }
   .browser-window { border-radius: 16px; }
   .window-content { gap: 10px; padding: 9px; }
-  .hero-panel { padding: 9px; }
+  .hero-panel { padding: 0; }
+  .hero-panel__toprow { margin: 9px; }
   .hero-panel__masthead { min-height: 320px; padding: 28px 20px; }
 
   .menu-bar { gap: 4px; }
@@ -951,6 +1007,7 @@ body::before {
 
 .hero-panel { border-color: rgba(255,59,212,.3); }
 
+.hero-panel::after,
 .panel::after {
   content: "";
   position: absolute;
@@ -1094,28 +1151,6 @@ body::before {
 
 .steam-widget__toolbar span::before { content: "[C:\\STEAM\\] "; color: var(--pink-soft); }
 
-.steam-widget__frame {
-  position: relative;
-}
-
-.steam-widget__frame::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  left: 9px;
-  right: 9px;
-  bottom: 2px;
-  height: 13px;
-  border-radius: 0 0 8px 8px;
-  background: #0b111f;
-  pointer-events: none;
-}
-
-.steam-widget__frame iframe {
-  clip-path: inset(0 0 7px 0 round 8px);
-  margin-bottom: -7px;
-}
-
 .social-panel .steam-widget__entry {
   min-height: 68px;
   display: flex;
@@ -1251,36 +1286,6 @@ body::after {
   top: calc(var(--x) / 5);
   animation: none;
   opacity: .45;
-}
-
-.steam-widget__frame::after { display: none; }
-
-.steam-widget__viewport {
-  position: relative;
-  height: 128px;
-  overflow: hidden;
-  border: 1px solid rgba(98,230,255,.12);
-  border-radius: 8px 8px 4px 4px;
-  background: #0b111f;
-}
-
-.steam-widget__viewport::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 20px;
-  background: linear-gradient(to bottom, transparent, #0b111f 88%);
-  pointer-events: none;
-}
-
-.steam-widget__frame .steam-widget__viewport iframe {
-  display: block;
-  width: 100%;
-  height: 190px;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  clip-path: none;
 }
 
 .steam-widget__actions {
@@ -1505,30 +1510,12 @@ body::after {
   color: var(--pink-soft);
 }
 
+#welcome-title::after { content: "起動完了 // SYSTEM READY"; }
 #steam-widget-title::after { content: "ストア接続 // STORE LINK"; }
 #blog-entries-title::after,
 #blog-window-title::after { content: "通信ログ // ARCHIVE"; }
 #contact .panel__title::after { content: "直通回線 // OPEN"; }
 #links-strip-title::after { content: "外部リンク // PORTS"; }
-
-.hero-panel {
-  padding-top: 46px;
-}
-
-.hero-panel::after {
-  content: "起動完了 // SYSTEM READY";
-  position: absolute;
-  z-index: 3;
-  top: 9px;
-  right: 16px;
-  padding-top: 12px;
-  color: var(--success);
-  background: repeating-linear-gradient(90deg, var(--pink) 0 10px, transparent 10px 16px) top right / 96px 4px no-repeat;
-  font: 500 .62rem/1 var(--font-terminal);
-  letter-spacing: .07em;
-  text-shadow: 0 0 10px rgba(106,240,189,.42);
-  animation: terminalCursor 1.05s steps(1,end) infinite;
-}
 
 .panel__title::after {
   color: var(--success);
@@ -1565,11 +1552,92 @@ body::after {
   .window-controls span { width: 25px; height: 20px; }
   .menu-bar > a::after { font-size: .45rem; }
   .video-player__topbar > span:first-child::before { content: "映像 // "; }
-  .hero-panel { padding-top: 43px; }
-  .hero-panel::after { right: 11px; font-size: .54rem; }
+}
+
+/* Local Steam card: full copy, no iframe clipping */
+.steam-card {
+  padding: 9px 12px 12px;
+  border: 1px solid #424c5c;
+  border-radius: 8px;
+  background: linear-gradient(130deg, #3b4351, #282e39);
+  color: #c9c9c9;
+  box-shadow: 2px 2px 15px rgba(0,0,0,.4), inset 0 1px rgba(255,255,255,.04);
+}
+
+.steam-card__header {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 34px;
+  margin-bottom: 8px;
+}
+
+.steam-card__title {
+  min-width: 0;
+  overflow: hidden;
+  color: #fefefe;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.steam-card__title em {
+  color: #9e9e9e;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.steam-card__brand {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.45);
+  opacity: .52;
+}
+
+.steam-card__content {
+  display: grid;
+  grid-template-columns: 184px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.steam-card__content > a {
+  display: block;
+  line-height: 0;
+}
+
+.steam-card__capsule {
+  display: block;
+  width: 184px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.steam-card__content p {
+  margin: 0;
+  color: #d2d5d9;
+  font-family: var(--font-body);
+  font-size: .76rem;
+  line-height: 1.38;
+}
+
+@media (max-width: 520px) {
+  .steam-card__content { grid-template-columns: 1fr; }
+  .steam-card__capsule { width: min(100%, 240px); }
+  .steam-card__content p { font-size: .75rem; line-height: 1.5; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .section-loader::before { animation: none !important; transform: scaleX(.74); }
+  .section-loader::after { display: none; }
 }
