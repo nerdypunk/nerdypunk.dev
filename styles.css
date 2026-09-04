@@ -14,6 +14,7 @@
   --danger: #ff6b8a;
   --warning: #ffd369;
   --success: #6af0bd;
+  --acid: #ccff00;
   --font-display: "Share Tech Mono", monospace;
   --font-body: "Space Grotesk", system-ui, sans-serif;
   --radius-shell: 22px;
@@ -163,17 +164,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: rgba(9, 15, 30, 0.55);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  font: 500 0.78rem/1 var(--font-display);
+  font: 500 0.86rem/1 var(--font-display);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .menu-bar > a {
   display: inline-flex;
-  min-height: 38px;
+  min-height: 42px;
   align-items: center;
   justify-content: center;
-  padding: 0 13px;
+  padding: 0 16px;
   border: 1px solid transparent;
   border-radius: 9px;
   color: var(--muted);
@@ -247,7 +248,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border: 1px solid var(--line);
   border-radius: 10px;
   background: rgba(0,0,0,.2);
-  color: #bed1e4;
+  color: var(--acid);
+  text-shadow: 0 0 8px rgba(204,255,0,.16);
   text-overflow: ellipsis;
   white-space: nowrap;
   box-shadow: inset 0 1px 8px rgba(0,0,0,.2);
@@ -710,6 +712,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .status-bar {
   min-height: 44px;
   justify-content: center;
+  padding: 0 22px;
   border-top: 1px solid var(--line);
   background: rgba(255,255,255,.025);
   color: #64758a;
@@ -901,7 +904,7 @@ body.lightbox-open { overflow: hidden; }
   .hero-panel__masthead { min-height: 320px; padding: 28px 20px; }
 
   .menu-bar { gap: 4px; }
-  .menu-bar > a { flex: 1 1 calc(50% - 4px); min-height: 36px; padding: 0 6px; }
+  .menu-bar > a { flex: 1 1 calc(50% - 4px); min-height: 40px; padding: 0 8px; }
   .menu-bar__icons { width: 100%; margin: 5px 0 0; justify-content: center; flex-wrap: wrap; }
   .menu-bar__icons a { width: 36px; height: 36px; }
 
@@ -1484,7 +1487,7 @@ body::after {
 
 .menu-bar > a::after {
   color: rgba(255,155,234,.62);
-  font-size: .47rem;
+  font-size: .51rem;
   line-height: 1;
   letter-spacing: .1em;
 }
@@ -1500,9 +1503,10 @@ body::after {
 
 .address-bar > span::after {
   content: "NET:// ADDRESS";
-  color: #8297ad;
+  color: var(--acid);
   font: .65rem/1 var(--font-terminal);
   letter-spacing: .06em;
+  text-shadow: 0 0 8px rgba(204,255,0,.16);
 }
 
 .video-player__topbar > span:first-child::before {
@@ -1550,7 +1554,7 @@ body::after {
 
 @media (max-width: 640px) {
   .window-controls span { width: 25px; height: 20px; }
-  .menu-bar > a::after { font-size: .45rem; }
+  .menu-bar > a::after { font-size: .49rem; }
   .video-player__topbar > span:first-child::before { content: "映像 // "; }
 }
 
@@ -1627,6 +1631,23 @@ body::after {
   font-family: var(--font-body);
   font-size: .76rem;
   line-height: 1.38;
+}
+
+/* Match the wishlist support copy to the hero introduction */
+.hero-panel__tagline,
+.steam-widget__support p {
+  font-family: var(--font-terminal);
+  font-size: clamp(.75rem, 1.14vw, .88rem);
+  font-weight: 500;
+  line-height: 1.72;
+  letter-spacing: .012em;
+  color: #d5eff4;
+  text-shadow: 0 0 12px rgba(98,230,255,.09);
+}
+
+/* Match both Steam columns to the frame's inner top/bottom edge */
+@media (min-width: 901px) {
+  .steam-widget__support { padding: 10px 0; }
 }
 
 @media (max-width: 520px) {
