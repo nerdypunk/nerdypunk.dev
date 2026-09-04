@@ -13,10 +13,43 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    try {
+      if (sessionStorage.getItem("npdBootSeen") === "1") document.documentElement.classList.add("boot-seen");
+    } catch {}
+  </script>
   <link rel="stylesheet" href="styles.css">
   <script src="effects.js" defer></script>
 </head>
 <body>
+  <div class="boot-loader" data-boot-loader role="status" aria-live="polite" aria-label="Identifying... Access Granted Nerd">
+    <div class="boot-loader__terminal">
+      <div class="boot-loader__title">
+        <span>Identity Gate.exe</span>
+        <span>認証 // Secure</span>
+      </div>
+      <div class="boot-loader__body">
+        <span class="boot-loader__command" aria-hidden="true">C:\NPD\GATEWAY&gt; AUTH_SEQUENCE</span>
+        <span class="boot-loader__track" aria-hidden="true">
+          <span class="boot-loader__block">█</span>
+          <span class="boot-loader__block">▓</span>
+          <span class="boot-loader__block">▒</span>
+        </span>
+        <span class="boot-loader__readout">
+          <span class="boot-loader__message boot-loader__message--identifying">Identifying...</span>
+          <span class="boot-loader__message boot-loader__message--granted">Access Granted Nerd</span>
+        </span>
+        <div class="boot-loader__progress" data-boot-progress role="progressbar" aria-label="Loading website" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="boot-loader__progress-meta" aria-hidden="true">
+            <span>SYS.LOAD // ENTRY BUFFER</span>
+            <span data-boot-percent>000%</span>
+          </div>
+          <div class="boot-loader__progress-rail" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="desktop">
     <main class="window-shell">
       <section class="browser-window" aria-label="Nerdy Punk blog">
