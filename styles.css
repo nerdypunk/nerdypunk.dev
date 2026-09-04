@@ -1069,6 +1069,506 @@ body::before {
   .hero-panel__masthead::after { right: 7px; }
 }
 
+/* Retro-computing pass */
+:root { --font-terminal: "IBM Plex Mono", "Courier New", monospace; }
+
+.hero-panel__tagline {
+  font-family: var(--font-terminal);
+  font-size: clamp(.75rem, 1.14vw, .88rem);
+  font-weight: 500;
+  line-height: 1.72;
+  letter-spacing: .012em;
+  color: #d5eff4;
+  text-shadow: 0 0 12px rgba(98,230,255,.09);
+}
+
+.hero-panel__intro::after {
+  content: "C:\\NPD> SIGNAL LOCKED _";
+  display: block;
+  margin-top: 14px;
+  color: var(--success);
+  font: 500 .61rem/1.4 var(--font-terminal);
+  letter-spacing: .08em;
+  animation: terminalCursor 1.05s steps(1, end) infinite;
+}
+
+.steam-widget__toolbar span::before { content: "[C:\\STEAM\\] "; color: var(--pink-soft); }
+
+.steam-widget__frame {
+  position: relative;
+}
+
+.steam-widget__frame::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 9px;
+  right: 9px;
+  bottom: 2px;
+  height: 13px;
+  border-radius: 0 0 8px 8px;
+  background: #0b111f;
+  pointer-events: none;
+}
+
+.steam-widget__frame iframe {
+  clip-path: inset(0 0 7px 0 round 8px);
+  margin-bottom: -7px;
+}
+
+.social-panel .steam-widget__entry {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  padding: 13px 14px;
+  font-family: var(--font-terminal);
+  font-size: .86rem;
+  font-weight: 500;
+  line-height: 1.52;
+  letter-spacing: 0;
+}
+
+.blog-sidebar .steam-widget__entry {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+.social-panel .steam-widget__entry::before {
+  content: ">";
+  flex: 0 0 auto;
+  margin-right: 9px;
+  color: var(--pink);
+  text-shadow: 0 0 9px rgba(255,59,212,.55);
+}
+
+.panel__title {
+  font-family: var(--font-terminal);
+  background-image:
+    linear-gradient(90deg, rgba(255,59,212,.14), rgba(107,59,184,.08) 38%, rgba(255,255,255,.025)),
+    repeating-linear-gradient(90deg, transparent 0 11px, rgba(98,230,255,.025) 11px 12px);
+}
+
+.status-bar::before,
+.status-bar::after {
+  color: rgba(98,230,255,.43);
+  font-family: var(--font-terminal);
+  font-size: .56rem;
+  letter-spacing: .08em;
+}
+
+.status-bar::before { content: "SYS:OK  RAM:64K  NET:UP"; margin-right: auto; }
+.status-bar::after { content: "CRT MODE / 60HZ"; margin-left: auto; }
+
+body::after {
+  background:
+    linear-gradient(90deg, transparent 0 12%, rgba(255,59,212,.11) 12% 34%, transparent 34% 100%),
+    linear-gradient(90deg, transparent 0 62%, rgba(98,230,255,.09) 62% 86%, transparent 86% 100%),
+    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255,255,255,.028) 3px 4px);
+  background-size: 100% 3px, 100% 2px, 100% 4px;
+  background-position: 0 21%, 0 68%, 0 0;
+  animation: signalGlitch 8s steps(1, end) infinite;
+}
+
+body::before {
+  animation: gridFloat 24s linear infinite, gridGlitch 8s steps(1, end) infinite;
+}
+
+@keyframes terminalCursor {
+  0%, 48% { opacity: 1; }
+  49%, 100% { opacity: .32; }
+}
+
+@keyframes signalGlitch {
+  0%, 86%, 90%, 100% { transform: translate(0); opacity: .14; filter: none; }
+  87% { transform: translateX(9px); opacity: .3; filter: saturate(1.8); }
+  88% { transform: translateX(-6px); opacity: .2; filter: hue-rotate(24deg); }
+  89% { transform: translateX(3px); opacity: .25; filter: saturate(1.4); }
+}
+
+@keyframes gridGlitch {
+  0%, 73%, 76%, 100% { transform: translate(0); filter: none; }
+  74% { transform: translateX(-5px); filter: contrast(1.25); }
+  75% { transform: translateX(4px); filter: hue-rotate(-18deg); }
+}
+
+@media (max-width: 640px) {
+  .hero-panel__tagline { font-size: .75rem; line-height: 1.68; }
+  .social-panel .steam-widget__entry { min-height: 64px; font-size: .79rem; padding: 12px; }
+  .status-bar::before, .status-bar::after { display: none; }
+}
+
+/* Console typography + background signal layer */
+body::before {
+  z-index: 0;
+  opacity: .4;
+}
+
+body::after {
+  z-index: 0;
+  background:
+    linear-gradient(90deg, transparent 0 5%, rgba(255,59,212,.22) 5% 37%, transparent 37% 100%),
+    linear-gradient(90deg, transparent 0 54%, rgba(98,230,255,.18) 54% 93%, transparent 93% 100%),
+    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255,255,255,.035) 3px 4px);
+  background-size: 100% 12px, 100% 8px, 100% 4px;
+  background-position: 0 19%, 0 71%, 0 0;
+}
+
+.code-rain {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 88%, transparent 100%);
+}
+
+.code-rain__column {
+  position: absolute;
+  top: -80vh;
+  left: var(--x);
+  display: block;
+  white-space: pre;
+  color: rgba(98,230,255,var(--alpha));
+  font: 500 .52rem/1.9 var(--font-terminal);
+  letter-spacing: .09em;
+  text-shadow: 0 0 8px rgba(98,230,255,.35);
+  animation: codeFall var(--speed) linear var(--delay) infinite;
+  will-change: transform;
+}
+
+.code-rain__column[data-tone="pink"] {
+  color: rgba(255,59,212,var(--alpha));
+  text-shadow: 0 0 8px rgba(255,59,212,.35);
+}
+
+.code-rain__column.is-static {
+  top: calc(var(--x) / 5);
+  animation: none;
+  opacity: .45;
+}
+
+.steam-widget__frame::after { display: none; }
+
+.steam-widget__viewport {
+  position: relative;
+  height: 128px;
+  overflow: hidden;
+  border: 1px solid rgba(98,230,255,.12);
+  border-radius: 8px 8px 4px 4px;
+  background: #0b111f;
+}
+
+.steam-widget__viewport::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, #0b111f 88%);
+  pointer-events: none;
+}
+
+.steam-widget__frame .steam-widget__viewport iframe {
+  display: block;
+  width: 100%;
+  height: 190px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  clip-path: none;
+}
+
+.steam-widget__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 8px;
+  padding: 6px;
+  border: 1px solid rgba(98,230,255,.16);
+  border-radius: 4px 4px 8px 8px;
+  background: linear-gradient(90deg, rgba(255,59,212,.09), rgba(7,15,31,.96) 42%, rgba(98,230,255,.08));
+  font-family: var(--font-terminal);
+}
+
+.steam-widget__actions > span {
+  padding-left: 8px;
+  color: #9cb1c6;
+  font-size: .68rem;
+  letter-spacing: .06em;
+}
+
+.steam-widget__actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 31px;
+  margin-left: auto;
+  padding: 0 12px;
+  border: 1px solid rgba(106,240,189,.3);
+  border-radius: 6px;
+  background: rgba(106,240,189,.1);
+  color: #a9ffd9;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.steam-widget__actions a::after {
+  content: "_";
+  margin-left: 7px;
+  animation: terminalCursor 1.05s steps(1,end) infinite;
+}
+
+.steam-widget__actions a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(106,240,189,.65);
+  background: rgba(106,240,189,.17);
+}
+
+.steam-widget__cta {
+  font-family: var(--font-terminal);
+  font-size: .94rem;
+  font-weight: 600;
+  letter-spacing: .055em;
+}
+
+.steam-widget__cta::after {
+  content: "_";
+  margin-left: 9px;
+  color: var(--success);
+  animation: terminalCursor 1.05s steps(1,end) infinite;
+}
+
+.steam-widget__mini-title,
+.steam-widget__toolbar span,
+.entry-preview__link,
+.steam-widget__entry {
+  font-family: var(--font-terminal);
+}
+
+.steam-widget__support p {
+  font-family: var(--font-terminal);
+  font-size: .79rem;
+  font-weight: 500;
+  line-height: 1.68;
+  letter-spacing: -.01em;
+}
+
+.entry-preview h3,
+.blog-post h2 {
+  font-family: var(--font-terminal);
+  font-weight: 600;
+  letter-spacing: -.035em;
+}
+
+.entry-preview h3::before,
+.blog-post h2::before {
+  content: "> ";
+  color: var(--pink);
+  text-shadow: 0 0 10px rgba(255,59,212,.45);
+}
+
+.entry-preview__link {
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+.entry-preview__link::before {
+  content: none;
+}
+
+.entry-preview__link::after {
+  content: "_";
+  margin-left: 7px;
+  color: var(--success);
+  animation: terminalCursor 1.05s steps(1,end) infinite;
+}
+
+@keyframes codeFall {
+  from { transform: translate3d(0, -20vh, 0); }
+  to { transform: translate3d(var(--drift), 200vh, 0); }
+}
+
+@keyframes signalGlitch {
+  0%, 80%, 86%, 100% { transform: translate(0); opacity: .2; filter: none; }
+  81% { transform: translateX(18px) skewX(-1deg); opacity: .58; filter: saturate(2.2) contrast(1.3); }
+  82% { transform: translateX(-13px); opacity: .32; filter: hue-rotate(35deg) contrast(1.35); }
+  83% { transform: translateX(8px) skewX(1deg); opacity: .5; filter: saturate(1.9); }
+  84% { transform: translateX(-4px); opacity: .27; filter: hue-rotate(-25deg); }
+  85% { transform: translate(0); opacity: .38; filter: contrast(1.25); }
+}
+
+@keyframes gridGlitch {
+  0%, 66%, 72%, 100% { transform: translate(0); filter: none; }
+  67% { transform: translateX(-12px) scaleX(1.01); filter: contrast(1.55); }
+  68% { transform: translateX(9px); filter: hue-rotate(-28deg) saturate(1.7); }
+  69% { transform: translateX(-5px) skewX(.45deg); filter: contrast(1.4); }
+  70% { transform: translateX(4px); filter: hue-rotate(22deg); }
+  71% { transform: translate(0); filter: saturate(1.35); }
+}
+
+@media (max-width: 640px) {
+  .steam-widget__actions { align-items: stretch; flex-direction: column; }
+  .steam-widget__actions > span { padding: 4px 7px 0; }
+  .steam-widget__actions a { width: 100%; min-height: 38px; margin-left: 0; }
+  .steam-widget__cta { font-size: .86rem; }
+  .steam-widget__support p { font-size: .75rem; }
+  .entry-preview__link { font-size: .78rem; }
+  .code-rain__column { font-size: .46rem; opacity: .7; }
+}
+
+/* Retro window controls + Japanese system labels */
+.window-controls {
+  gap: 5px;
+}
+
+.window-controls span {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 21px;
+  border: 1px solid rgba(98,230,255,.36);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(17,31,51,.96), rgba(5,11,24,.96));
+  box-shadow: inset 0 1px rgba(255,255,255,.08), 0 0 10px rgba(98,230,255,.08);
+  clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+}
+
+.window-controls span::before {
+  font: 600 .68rem/1 var(--font-terminal);
+  text-shadow: 0 0 8px currentColor;
+  transform: translateY(-1px);
+}
+
+.window-controls span:nth-child(1) {
+  border-color: rgba(98,230,255,.5);
+  background: linear-gradient(180deg, rgba(20,57,70,.94), rgba(5,17,29,.98));
+  color: var(--cyan);
+}
+
+.window-controls span:nth-child(1)::before { content: "—"; }
+
+.window-controls span:nth-child(2) {
+  border-color: rgba(255,59,212,.48);
+  background: linear-gradient(180deg, rgba(66,22,66,.94), rgba(17,8,31,.98));
+  color: var(--pink-soft);
+}
+
+.window-controls span:nth-child(2)::before { content: "□"; }
+
+.window-controls span:nth-child(3) {
+  border-color: rgba(255,107,138,.56);
+  background: linear-gradient(180deg, rgba(74,24,44,.95), rgba(27,8,19,.98));
+  color: #ff839c;
+}
+
+.window-controls span:nth-child(3)::before { content: "×"; font-size: .82rem; }
+
+.menu-bar > a {
+  flex-direction: column;
+  gap: 3px;
+}
+
+.menu-bar > a::after {
+  color: rgba(255,155,234,.62);
+  font-size: .47rem;
+  line-height: 1;
+  letter-spacing: .1em;
+}
+
+.menu-bar > a:nth-child(1)::after { content: "ホーム"; }
+.menu-bar > a:nth-child(2)::after { content: "予約登録"; }
+.menu-bar > a:nth-child(3)::after { content: "通信ログ"; }
+.menu-bar > a:nth-child(4)::after { content: "接続"; }
+
+.address-bar > span {
+  font-size: 0;
+}
+
+.address-bar > span::after {
+  content: "NET:// ADDRESS";
+  color: #8297ad;
+  font: .65rem/1 var(--font-terminal);
+  letter-spacing: .06em;
+}
+
+.video-player__topbar > span:first-child::before {
+  content: "映像 // ";
+  color: var(--pink-soft);
+}
+
+#steam-widget-title::after { content: "ストア接続 // STORE LINK"; }
+#blog-entries-title::after,
+#blog-window-title::after { content: "通信ログ // ARCHIVE"; }
+#contact .panel__title::after { content: "直通回線 // OPEN"; }
+#links-strip-title::after { content: "外部リンク // PORTS"; }
+
+.hero-panel {
+  padding-top: 46px;
+}
+
+.hero-panel::after {
+  content: "起動完了 // SYSTEM READY";
+  position: absolute;
+  z-index: 3;
+  top: 9px;
+  right: 16px;
+  padding-top: 12px;
+  color: var(--success);
+  background: repeating-linear-gradient(90deg, var(--pink) 0 10px, transparent 10px 16px) top right / 96px 4px no-repeat;
+  font: 500 .62rem/1 var(--font-terminal);
+  letter-spacing: .07em;
+  text-shadow: 0 0 10px rgba(106,240,189,.42);
+  animation: terminalCursor 1.05s steps(1,end) infinite;
+}
+
+.panel__title::after {
+  color: var(--success);
+  text-shadow: 0 0 10px rgba(106,240,189,.42);
+  animation: terminalCursor 1.05s steps(1,end) infinite;
+}
+
+.contact-copy::before {
+  content: "C:\\NET\\COMMS> OPEN CHANNEL_";
+  margin-bottom: 13px;
+  color: var(--success);
+  font: 500 .62rem/1 var(--font-terminal);
+  letter-spacing: .08em;
+  animation: terminalCursor 1.05s steps(1,end) infinite;
+}
+
+.steam-widget__actions a {
+  border: 1px solid #232a0e;
+  border-radius: 2px;
+  background: linear-gradient(to right, #6fa720 5%, #588a1b 95%);
+  color: #d2efa9;
+  text-shadow: 1px 1px 2px rgba(0,0,0,.3);
+  box-shadow: 2px 2px 10px rgba(0,0,0,.5);
+}
+
+.steam-widget__actions a:hover {
+  border-color: #344014;
+  background: linear-gradient(to right, #8ed629 5%, #6aa621 95%);
+  color: #fff;
+  box-shadow: 2px 2px 12px rgba(0,0,0,.55), 0 0 14px rgba(142,214,41,.16);
+}
+
+@media (max-width: 640px) {
+  .window-controls span { width: 25px; height: 20px; }
+  .menu-bar > a::after { font-size: .45rem; }
+  .video-player__topbar > span:first-child::before { content: "映像 // "; }
+  .hero-panel { padding-top: 43px; }
+  .hero-panel::after { right: 11px; font-size: .54rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }

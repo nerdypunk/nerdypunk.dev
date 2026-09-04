@@ -12,8 +12,9 @@
   <link rel="icon" type="image/png" href="Images/Logo_NerdyPunk.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="effects.js" defer></script>
 </head>
 <body>
   <div class="desktop">
@@ -110,14 +111,20 @@
                   <div class="steam-widget__toolbar" aria-hidden="true">
                     <span>WISHLIST MY GAME ON STEAM</span>
                   </div>
-                  <iframe
-                    src="https://store.steampowered.com/widget/2354580/"
-                    frameborder="0"
-                    width="646"
-                    height="190"
-                    loading="lazy"
-                    title="Steam store widget"
-                  ></iframe>
+                  <div class="steam-widget__viewport">
+                    <iframe
+                      src="https://store.steampowered.com/widget/2354580/"
+                      frameborder="0"
+                      width="646"
+                      height="190"
+                      loading="lazy"
+                      title="Steam store widget"
+                    ></iframe>
+                  </div>
+                  <div class="steam-widget__actions">
+                    <span>AVAILABLE // 2026</span>
+                    <a href="https://store.steampowered.com/app/2354580/" target="_blank" rel="noreferrer">WISHLIST ON STEAM</a>
+                  </div>
                 </div>
                 <aside class="steam-widget__support" aria-label="Wishlist support message">
                   <div class="steam-widget__mini-title">Why Wishlists Matter</div>
