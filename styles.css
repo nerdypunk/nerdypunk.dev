@@ -866,6 +866,209 @@ body.lightbox-open { overflow: hidden; }
   .status-bar { padding: 0 10px; text-align: center; }
 }
 
+/* Identity pass: Neo-Tokyo vaporwave */
+:root {
+  --pink: #ff3bd4;
+  --pink-soft: #ff9bea;
+  --sunset: #ff7a8a;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 59, 212, .22), transparent 28rem),
+    radial-gradient(circle at 88% 22%, rgba(34, 213, 255, .18), transparent 32rem),
+    linear-gradient(145deg, rgba(72, 31, 135, .2), transparent 38%),
+    linear-gradient(180deg, #08071a 0%, var(--void) 58%, #050811 100%);
+}
+
+body::before {
+  opacity: .27;
+  background-image:
+    linear-gradient(rgba(98, 230, 255, .13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 59, 212, .1) 1px, transparent 1px);
+}
+
+.desktop::before,
+.desktop::after {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.desktop::before {
+  content: "電脳浪漫";
+  left: max(10px, calc(50vw - 670px));
+  bottom: 28px;
+  color: rgba(255, 59, 212, .11);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  letter-spacing: .08em;
+  writing-mode: vertical-rl;
+  text-shadow: 0 0 35px rgba(255, 59, 212, .18);
+}
+
+.desktop::after {
+  content: "NPD // CHANNEL 2354580";
+  right: max(12px, calc(50vw - 670px));
+  top: 24%;
+  color: rgba(98, 230, 255, .17);
+  font-size: .62rem;
+  letter-spacing: .34em;
+  writing-mode: vertical-rl;
+}
+
+.browser-window::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 9%;
+  right: 9%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pink), var(--violet), var(--cyan), transparent);
+  box-shadow: 0 0 18px rgba(255,59,212,.5), 0 0 24px rgba(98,230,255,.3);
+}
+
+.title-bar__name::after {
+  content: "// 電脳通信";
+  margin-left: 6px;
+  color: var(--pink-soft);
+  opacity: .75;
+  font-size: .62rem;
+  letter-spacing: .12em;
+}
+
+.menu-bar > a:hover {
+  background: linear-gradient(135deg, rgba(255,59,212,.11), rgba(98,230,255,.09));
+  text-shadow: 0 0 14px rgba(98,230,255,.5);
+}
+
+.address-bar__field::after { content: "接続 // SECURE"; }
+
+.hero-panel,
+.panel { border-color: rgba(124,193,255,.2); }
+
+.hero-panel { border-color: rgba(255,59,212,.3); }
+
+.panel::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 22px;
+  width: 64px;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, var(--pink) 0 7px, transparent 7px 11px);
+  opacity: .9;
+  pointer-events: none;
+}
+
+.hero-panel__masthead {
+  border-color: rgba(255,59,212,.34);
+  background:
+    linear-gradient(rgba(98,230,255,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,59,212,.05) 1px, transparent 1px),
+    linear-gradient(145deg, rgba(35,14,74,.9), rgba(5,11,28,.88));
+  background-size: 28px 28px, 28px 28px, auto;
+}
+
+.hero-panel__masthead::before {
+  width: 270px;
+  height: 270px;
+  top: -74px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(to bottom, rgba(255,122,138,.78) 0 6px, transparent 6px 11px),
+    linear-gradient(180deg, rgba(255,59,212,.78), rgba(128,96,255,.3));
+  filter: drop-shadow(0 0 30px rgba(255,59,212,.28));
+  opacity: .46;
+}
+
+.hero-panel__masthead::after {
+  content: "ネオ東京 // 独立系ゲーム開発";
+  position: absolute;
+  right: 10px;
+  top: 18px;
+  color: rgba(185,245,255,.48);
+  font: .55rem/1 var(--font-display);
+  letter-spacing: .12em;
+  writing-mode: vertical-rl;
+}
+
+.hero-panel__logo {
+  filter: drop-shadow(3px 3px 0 rgba(255,59,212,.3)) drop-shadow(-2px -2px 0 rgba(98,230,255,.24)) drop-shadow(0 0 22px rgba(98,230,255,.2));
+}
+
+.hero-panel__eyebrow::before { content: "起動 // "; color: var(--pink); }
+
+.video-player {
+  border-color: rgba(98,230,255,.34);
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 0 26px rgba(98,230,255,.06), -8px 8px 0 rgba(255,59,212,.04);
+}
+
+.video-player__topbar {
+  background: linear-gradient(90deg, rgba(255,59,212,.15), rgba(128,96,255,.09) 45%, rgba(98,230,255,.08));
+  color: #d7c7ff;
+}
+
+.panel__title {
+  background: linear-gradient(90deg, rgba(255,59,212,.14), rgba(107,59,184,.08) 38%, rgba(255,255,255,.025));
+}
+
+.panel__title::before {
+  background: linear-gradient(180deg, var(--pink), var(--cyan));
+  box-shadow: 0 0 14px rgba(255,59,212,.6);
+}
+
+.panel__title::after { content: "稼働中 // RUNNING"; }
+
+.steam-widget__toolbar span,
+.steam-widget__mini-title {
+  background: linear-gradient(120deg, rgba(255,59,212,.1), rgba(98,230,255,.07));
+}
+
+.steam-widget__cta,
+.entry-preview__link,
+.blog-post__share,
+.lightbox__close {
+  background: linear-gradient(120deg, rgba(255,59,212,.25), rgba(128,96,255,.21) 48%, rgba(98,230,255,.19));
+}
+
+.steam-widget__cta:hover,
+.entry-preview__link:hover,
+.blog-post__share:hover,
+.lightbox__close:hover {
+  background: linear-gradient(120deg, rgba(255,59,212,.36), rgba(128,96,255,.29) 48%, rgba(98,230,255,.26));
+}
+
+.contact-copy a {
+  text-shadow: 2px 2px 0 rgba(255,59,212,.28);
+}
+
+.contact-copy a:hover {
+  text-shadow: 2px 2px 0 rgba(255,59,212,.45), 0 0 18px rgba(98,230,255,.38);
+}
+
+.icon-strip a:nth-child(odd) { border-color: rgba(255,59,212,.24); }
+.icon-strip a:nth-child(even) { border-color: rgba(98,230,255,.28); }
+
+.blog-post__meta,
+.blog-post__share {
+  border-color: rgba(255,59,212,.3);
+  background: linear-gradient(120deg, rgba(42,14,65,.92), rgba(13,24,50,.9));
+  color: #ffc2ef;
+}
+
+@media (max-width: 640px) {
+  .title-bar__name::after { display: none; }
+  .desktop::before, .desktop::after { display: none; }
+  .address-bar__field::after { content: "接続"; }
+  .hero-panel__masthead::after { right: 7px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
