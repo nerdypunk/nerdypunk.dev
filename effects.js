@@ -4,6 +4,30 @@
     "//", "::", ">_", "[]", "{}", "<>", "▓", "▒", "░", "起動", "電脳"
   ];
 
+  const mobilePerformanceQuery = window.matchMedia(
+    "(max-width: 760px), (max-width: 1024px) and (hover: none) and (pointer: coarse)"
+  );
+  const mobilePerformanceMode = mobilePerformanceQuery.matches;
+
+  if (mobilePerformanceMode) {
+    const video = document.querySelector(".video-player video");
+
+    if (video && "IntersectionObserver" in window) {
+      const videoObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          const playback = video.play();
+          if (playback) playback.catch(() => {});
+        } else {
+          video.pause();
+        }
+      }, { rootMargin: "80px 0px" });
+
+      videoObserver.observe(video);
+    }
+
+    return;
+  }
+
   const layer = document.createElement("div");
   layer.className = "code-rain";
   layer.setAttribute("aria-hidden", "true");

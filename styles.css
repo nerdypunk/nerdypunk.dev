@@ -245,14 +245,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
   min-width: 0;
   overflow: hidden;
   padding: 10px 40px 10px 14px;
-  border: 1px solid var(--line);
+  border: 2px solid rgba(204,255,0,.42);
   border-radius: 10px;
   background: rgba(0,0,0,.2);
   color: var(--acid);
   text-shadow: 0 0 8px rgba(204,255,0,.16);
   text-overflow: ellipsis;
   white-space: nowrap;
-  box-shadow: inset 0 1px 8px rgba(0,0,0,.2);
+  box-shadow:
+    inset 0 1px 8px rgba(0,0,0,.2),
+    0 0 0 1px rgba(204,255,0,.06),
+    0 0 14px rgba(204,255,0,.08);
   text-transform: none;
 }
 
@@ -1499,14 +1502,16 @@ body::after {
 
 .address-bar > span {
   font-size: 0;
+  flex: 0 0 auto;
+  margin-left: 35px;
 }
 
 .address-bar > span::after {
   content: "NET:// ADDRESS";
-  color: var(--acid);
+  color: #dceaff;
   font: .65rem/1 var(--font-terminal);
   letter-spacing: .06em;
-  text-shadow: 0 0 8px rgba(204,255,0,.16);
+  text-shadow: 0 0 8px rgba(220,234,255,.16);
 }
 
 .video-player__topbar > span:first-child::before {
@@ -1661,4 +1666,43 @@ body::after {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .section-loader::before { animation: none !important; transform: scaleX(.74); }
   .section-loader::after { display: none; }
+}
+
+/* Mobile performance mode: retain the interface, drop costly compositing */
+@media (max-width: 760px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+  body {
+    background:
+      linear-gradient(rgba(98,230,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(98,230,255,.035) 1px, transparent 1px),
+      radial-gradient(circle at 14% 10%, rgba(89,50,180,.2), transparent 30rem),
+      radial-gradient(circle at 86% 28%, rgba(26,179,214,.12), transparent 34rem),
+      linear-gradient(180deg, #060816 0%, var(--void) 58%, #050811 100%);
+    background-size: 44px 44px, 44px 44px, auto, auto, auto;
+    background-attachment: scroll;
+  }
+
+  body::before,
+  body::after,
+  .code-rain,
+  .desktop::before,
+  .desktop::after {
+    display: none !important;
+  }
+
+  .browser-window,
+  .menu-bar,
+  .hero-panel,
+  .panel,
+  .blog-post__meta,
+  .blog-post__share {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .browser-window { background: rgba(6,10,22,.96); }
+  .menu-bar { background: rgba(9,15,30,.94); }
+  .hero-panel,
+  .panel { background: rgba(12,18,36,.94); }
+
+  .hero-panel__masthead::before { display: none; }
 }
