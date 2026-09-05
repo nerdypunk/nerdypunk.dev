@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="NerdyPunkDev portfolio — game design, graphic design, illustration, and music.">
+  <meta property="og:title" content="Portfolio | NerdyPunkDev">
+  <meta property="og:description" content="NerdyPunkDev portfolio — game design, graphic design, illustration, and music.">
+  <meta name="twitter:title" content="Portfolio | NerdyPunkDev">
+  <meta name="twitter:description" content="NerdyPunkDev portfolio — game design, graphic design, illustration, and music.">
+  <title>Portfolio | NerdyPunkDev</title>
+  <link rel="icon" type="image/png" href="Images/Logo_NerdyPunk.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    try {
+      if (sessionStorage.getItem("npdBootSeen") === "1") document.documentElement.classList.add("boot-seen");
+    } catch {}
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="design.css">
+  <script src="effects.js" defer></script>
+</head>
+<body>
+  <div class="boot-loader" data-boot-loader role="status" aria-live="polite" aria-label="Identifying... Access Granted Nerd">
+    <div class="boot-loader__terminal">
+      <div class="boot-loader__title">
+        <span>Identity Gate.exe</span>
+        <span>認証 // Secure</span>
+      </div>
+      <div class="boot-loader__body">
+        <span class="boot-loader__command" aria-hidden="true">C:\NPD\GATEWAY&gt; AUTH_SEQUENCE</span>
+        <span class="boot-loader__track" aria-hidden="true">
+          <span class="boot-loader__block">█</span>
+          <span class="boot-loader__block">▓</span>
+          <span class="boot-loader__block">▒</span>
+        </span>
+        <span class="boot-loader__readout">
+          <span class="boot-loader__message boot-loader__message--identifying">Identifying...</span>
+          <span class="boot-loader__message boot-loader__message--granted">Access Granted Nerd</span>
+        </span>
+        <div class="boot-loader__progress" data-boot-progress role="progressbar" aria-label="Loading website" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="boot-loader__progress-meta" aria-hidden="true">
+            <span>SYS.LOAD // ENTRY BUFFER</span>
+            <span data-boot-percent>000%</span>
+          </div>
+          <div class="boot-loader__progress-rail" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="desktop">
+    <main class="window-shell">
+      <section class="browser-window" aria-label="Nerdy Punk portfolio">
+        <header class="title-bar">
+          <div class="title-bar__name">
+            <span>nerdypunk.dev</span>
+          </div>
+          <div class="window-controls" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span class="window-controls__close"></span>
+          </div>
+        </header>
+
+        <nav class="menu-bar" aria-label="Site menu">
+          <a href="index.html">Home</a>
+          <a href="index.html#steam-widget-title">Wishlist Game</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#contact">Contact</a>
+          <div class="menu-bar__icons" aria-label="Social links">
+            <a href="https://store.steampowered.com/app/2354580/" target="_blank" rel="noreferrer" aria-label="Steam"><img src="assets/social/steam.png" alt="Steam"></a>
+            <a href="https://discord.gg/VZpnjtnHSc" target="_blank" rel="noreferrer" aria-label="Discord"><img src="assets/social/discord.png" alt="Discord"></a>
+            <a href="https://twitter.com/NerdyPunkDev" target="_blank" rel="noreferrer" aria-label="Twitter"><img src="assets/social/twitter.png" alt="Twitter"></a>
+            <a href="https://www.twitch.tv/nerdypunkdev" target="_blank" rel="noreferrer" aria-label="Twitch"><img src="assets/social/twitch.png" alt="Twitch"></a>
+            <a href="https://www.youtube.com/@nerdypunkdev" target="_blank" rel="noreferrer" aria-label="YouTube"><img src="assets/social/youtube.png" alt="YouTube"></a>
+            <a href="mailto:whatsup@nerdypunk.dev" aria-label="Email"><img src="assets/social/email.png" alt="Email"></a>
+            <a href="https://ko-fi.com/nerdypunkdev" target="_blank" rel="noreferrer" aria-label="Kofi"><img src="assets/social/kofi.png" alt="Kofi"></a>
+            <a href="https://bsky.app/profile/nerdypunk.dev" target="_blank" rel="noreferrer" aria-label="BlueSky"><img src="assets/social/bluesky.png" alt="BlueSky"></a>
+          </div>
+        </nav>
+
+        <div class="address-bar">
+          <span>Address:</span>
+          <div class="address-bar__field">https://nerdypunk.dev/portfolio</div>
+        </div>
+
+        <div class="window-content">
+          <section class="panel" id="game-design" aria-labelledby="game-design-title">
+            <div class="panel__title" id="game-design-title">Game Design.exe<span class="section-loader section-loader--steam" aria-hidden="true"></span></div>
+            <div class="panel__body">
+              <h2 class="portfolio-headline"><span>Hi Im NerdyPunkDev and<br>I'm a game developer.</span></h2>
+              <p class="portfolio-headline__sub">Im currently working as a solo game developer so this is my main project Spaceman Memories<br>but I code, write, illustrate, paint, make music or whatever that comes to mind.</p>
+              <div class="video-player portfolio-video" aria-label="Spaceman Memories trailer">
+                <div class="video-player__topbar">
+                  <span>Now Playing: Spaceman Memories Trailer</span>
+                  <span>Hi-Fi Stereo</span>
+                </div>
+                <div class="video-player__screen">
+                  <video autoplay muted loop playsinline controls preload="metadata" poster="Images/Logo_NerdyPunk.png">
+                    <source src="Videos/Trailer.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <div class="video-player__scanlines" aria-hidden="true"></div>
+                </div>
+                <div class="video-player__controls" aria-hidden="true">
+                  <span>PLAY</span>
+                  <span>SPACEMAN MEMORIES TRAILER</span>
+                  <span>SP</span>
+                  <span>00:00</span>
+                </div>
+              </div>
+              <p class="badge-strip__label">Featured by</p>
+              <div class="badge-strip" data-badge-strip aria-label="Badges">
+                <div class="badge-strip__track" data-badge-track></div>
+              </div>
+              <div class="portfolio-cta">
+                <p class="portfolio-cta-copy">If you want to check out my game you can play the demo for free on Steam</p>
+                <a class="portfolio-cta-btn" href="https://store.steampowered.com/app/3963110/Spaceman_Memories_Demo/" target="_blank" rel="noreferrer"><span>Play on Steam</span></a>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" id="graphics" aria-labelledby="graphics-title">
+            <div class="panel__title" id="graphics-title">Graphics.exe<span class="section-loader section-loader--blog" aria-hidden="true"></span></div>
+            <div class="panel__body">
+              <h2 class="portfolio-headline portfolio-headline--section"><span>I'm also an illustrator.</span></h2>
+              <p class="portfolio-intro">These are illustrations that I've made throughout the last decade, all using digital techniques pre AI era.</p>
+              <div class="portfolio-grid">
+                <figure class="portfolio-tile">
+                  <img src="Images/pf/1ebd2023215125.563213d7d9243.webp" alt="Portfolio illustration 01">
+                  <figcaption class="portfolio-tile__label">ILLUSTRATION // 01</figcaption>
+                </figure>
+                <figure class="portfolio-tile">
+                  <img src="Images/pf/314b5221396189.563008172f91f.webp" alt="Portfolio illustration 02">
+                  <figcaption class="portfolio-tile__label">ILLUSTRATION // 02</figcaption>
+                </figure>
+                <figure class="portfolio-tile">
+                  <img src="Images/pf/62fa9b20810611.562f17d2104b9.webp" alt="Portfolio graphic design 01">
+                  <figcaption class="portfolio-tile__label">GRAPHIC DESIGN // 01</figcaption>
+                </figure>
+                <figure class="portfolio-tile">
+                  <img src="Images/pf/d0ee8115440511.56291169c58b1.webp" alt="Portfolio graphic design 02">
+                  <figcaption class="portfolio-tile__label">GRAPHIC DESIGN // 02</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" id="music" aria-labelledby="music-title">
+            <div class="panel__title" id="music-title">Music.exe<span class="section-loader section-loader--contact" aria-hidden="true"></span></div>
+            <div class="panel__body">
+              <h2 class="portfolio-headline portfolio-headline--section"><span>I'm also a music composer.</span></h2>
+              <p class="portfolio-intro">I've also been a musician for more than 15 years and make the music for my own projects.</p>
+              <div class="music-player" data-music-player>
+                <audio preload="metadata"></audio>
+                <div class="music-player__deck">
+                  <div class="music-player__eq" aria-hidden="true">
+                    <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span><span style="--i:10"></span><span style="--i:11"></span><span style="--i:12"></span><span style="--i:13"></span>
+                  </div>
+                  <div class="music-player__channel">
+                    <div class="music-player__vinyl" aria-hidden="true">
+                      <div class="music-player__label-disc">
+                        <img class="music-player__art" data-art src="" alt="">
+                        <span class="music-player__disc-text" data-disc-text>NPD</span>
+                      </div>
+                    </div>
+                    <button class="music-player__nav" type="button" data-prev aria-label="Previous track">«</button>
+                    <button class="music-player__toggle" type="button" data-toggle aria-label="Play track">▶</button>
+                    <button class="music-player__nav" type="button" data-next aria-label="Next track">»</button>
+                    <div class="music-player__info">
+                      <span class="music-player__label">NOW PLAYING // MP3</span>
+                      <span class="music-player__track" data-track-name>track.mp3</span>
+                    </div>
+                    <span class="music-player__status" aria-hidden="true">SYS.AUDIO // READY</span>
+                  </div>
+                  <div class="music-player__console">
+                    <span class="music-player__time" data-time>00:00</span>
+                    <div class="music-player__rail" data-rail aria-hidden="true"><span></span></div>
+                    <span class="music-player__time" data-duration>--:--</span>
+                  </div>
+                  <div class="music-player__volume">
+                    <span>VOL</span>
+                    <input type="range" min="0" max="1" step="0.01" value="0.8" data-volume aria-label="Volume">
+                  </div>
+                </div>
+                <div class="music-player__list" data-list aria-label="Track list"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" id="coded-music" aria-labelledby="coded-music-title">
+            <div class="panel__title" id="coded-music-title">Coded Music.exe<span class="section-loader section-loader--links" aria-hidden="true"></span></div>
+            <div class="panel__body">
+              <h2 class="portfolio-headline portfolio-headline--section"><span>and I even code music!</span></h2>
+              <p class="portfolio-intro">I also like to use code for creativity as these tracks I created using Ruby on Sonic Pi.</p>
+              <div class="portfolio-videos">
+                <iframe src="https://www.youtube-nocookie.com/embed/Ns7olgIE5WQ" title="Toolee Bits - Seccentric Girl (Open Source Music coded with Sonic Pi)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/2EPTSqaQogo" title="Toolee Bits - Quarantooli (Open Source Music coded with Sonic Pi)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" id="video" aria-labelledby="video-title">
+            <div class="panel__title" id="video-title">Video.exe<span class="section-loader section-loader--steam" aria-hidden="true"></span></div>
+            <div class="panel__body">
+              <h2 class="portfolio-headline portfolio-headline--section"><span>And last but not least<br>I'm also a video editor and educator.</span></h2>
+              <div class="portfolio-videos">
+                <iframe src="https://www.youtube-nocookie.com/embed/OVa8PuI05ic" title="Make a voxel game in 100 minutes? Lets find out | RPG IN A BOX Hands-on game development" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/wPWKhBIf9gE" title="RPG in a Box practical tips - NerdyPunkDev" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <footer class="status-bar">
+          <span>NerdyPunkDev All rights Reserved 2026</span>
+        </footer>
+      </section>
+    </main>
+  </div>
+<div class="lightbox" id="pf-lightbox" hidden>
+  <div class="lightbox__backdrop" data-pf-lightbox-close></div>
+  <div class="lightbox__window" role="dialog" aria-modal="true" aria-label="Expanded portfolio image">
+    <button class="lightbox__close" type="button" aria-label="Close image viewer" data-pf-lightbox-close>Close [X]</button>
+    <img class="lightbox__image" src="" alt="">
+    <p class="lightbox__caption"></p>
+  </div>
+</div>
+</body>
+<script>
+  (() => {
+    const lightbox = document.getElementById('pf-lightbox');
+    if (!lightbox) return;
+
+    const lightboxImage = lightbox.querySelector('.lightbox__image');
+    const lightboxCaption = lightbox.querySelector('.lightbox__caption');
+    const closeTargets = lightbox.querySelectorAll('[data-pf-lightbox-close]');
+    const portfolioImages = document.querySelectorAll('.portfolio-tile img');
+
+    const close = () => {
+      lightbox.hidden = true;
+      document.body.classList.remove('lightbox-open');
+      lightboxImage.src = '';
+      lightboxImage.alt = '';
+      lightboxCaption.textContent = '';
+    };
+
+    const open = (image) => {
+      const tile = image.closest('.portfolio-tile');
+      const label = tile?.querySelector('.portfolio-tile__label');
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt;
+      lightboxCaption.textContent = label?.textContent?.trim() || '';
+      lightbox.hidden = false;
+      document.body.classList.add('lightbox-open');
+    };
+
+    portfolioImages.forEach((image) => {
+      image.tabIndex = 0;
+      image.setAttribute('role', 'button');
+      image.setAttribute('aria-label', `${image.alt || 'Portfolio image'}. Open enlarged view.`);
+
+      image.addEventListener('click', () => open(image));
+      image.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          open(image);
+        }
+      });
+    });
+
+    closeTargets.forEach((target) => target.addEventListener('click', close));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !lightbox.hidden) close();
+    });
+  })();
+</script>
+<script>
+  (() => {
+    const TRACKS = ['Hideaway', 'Kappa', 'Nozomi', 'Old Memories'];
+    let index = 0;
+
+    const player = document.querySelector('[data-music-player]');
+    if (!player) return;
+
+    const audio = player.querySelector('audio');
+    const toggle = player.querySelector('[data-toggle]');
+    const prevBtn = player.querySelector('[data-prev]');
+    const nextBtn = player.querySelector('[data-next]');
+    const rail = player.querySelector('[data-rail]');
+    const fill = rail.querySelector('span');
+    const timeEl = player.querySelector('[data-time]');
+    const durEl = player.querySelector('[data-duration]');
+    const nameEl = player.querySelector('[data-track-name]');
+    const statusEl = player.querySelector('.music-player__status');
+    const vol = player.querySelector('[data-volume]');
+    const discText = player.querySelector('[data-disc-text]');
+    const art = player.querySelector('[data-art]');
+    const listEl = player.querySelector('[data-list]');
+
+    const fmt = (s) => {
+      if (!isFinite(s)) return '--:--';
+      const m = Math.floor(s / 60);
+      const x = Math.floor(s % 60);
+      return `${String(m).padStart(2, '0')}:${String(x).padStart(2, '0')}`;
+    };
+
+    const setPlaying = (playing) => {
+      player.classList.toggle('is-playing', playing);
+      toggle.textContent = playing ? '■' : '▶';
+      toggle.setAttribute('aria-label', playing ? 'Pause track' : 'Play track');
+    };
+
+    const renderList = (active) => {
+      listEl.innerHTML = '';
+      TRACKS.forEach((name, i) => {
+        const row = document.createElement('button');
+        row.type = 'button';
+        row.className = `music-player__row${i === active ? ' is-active' : ''}`;
+        row.setAttribute('aria-label', `Play ${name}`);
+        row.innerHTML = `
+          <span class="music-player__num">${String(i + 1).padStart(2, '0')}</span>
+          <span class="music-player__thumb" aria-hidden="true"><span class="music-player__mini-vinyl"></span></span>
+          <span class="music-player__rowcopy">
+            <span class="music-player__rowtitle">${name}</span>
+            <span class="music-player__rowsub">NerdyPunkDev</span>
+          </span>
+          <span class="music-player__rowstatus" aria-hidden="true"><span class="music-player__eqmini"><i></i><i></i><i></i></span></span>`;
+        row.addEventListener('click', () => setTrack(i, true));
+        listEl.appendChild(row);
+      });
+    };
+
+    const setTrack = (i, autoplay) => {
+      index = (i + TRACKS.length) % TRACKS.length;
+      const name = TRACKS[index];
+      player.classList.remove('is-error');
+      audio.src = `Music/${name}.mp3`;
+      nameEl.textContent = `${name}.mp3`;
+      discText.textContent = name.toUpperCase().slice(0, 12);
+      statusEl.textContent = 'SYS.AUDIO // READY';
+      timeEl.textContent = '00:00';
+      durEl.textContent = '--:--';
+      fill.style.transform = 'scaleX(0)';
+      const cover = `Music/cover-${name}.jpg`;
+      art.src = cover;
+      renderList(index);
+      if (autoplay) audio.play().catch(() => {});
+    };
+
+    const onError = () => {
+      player.classList.add('is-error');
+      setPlaying(false);
+      nameEl.textContent = '[ NO TRACK LOADED ]';
+      statusEl.textContent = 'AWAITING // MUSIC FILES';
+      timeEl.textContent = '--:--';
+      durEl.textContent = '--:--';
+      discText.textContent = 'NO TRACK';
+      art.classList.remove('is-loaded');
+    };
+
+    art.addEventListener('load', () => art.classList.add('is-loaded'));
+    art.addEventListener('error', () => art.classList.remove('is-loaded'));
+
+    audio.addEventListener('error', onError);
+    audio.addEventListener('play', () => setPlaying(true));
+    audio.addEventListener('pause', () => setPlaying(false));
+    audio.addEventListener('loadedmetadata', () => {
+      durEl.textContent = fmt(audio.duration);
+      statusEl.textContent = 'SYS.AUDIO // READY';
+    });
+    audio.addEventListener('ended', () => setTrack(index + 1, true));
+    audio.addEventListener('timeupdate', () => {
+      timeEl.textContent = fmt(audio.currentTime);
+      if (audio.duration) fill.style.transform = `scaleX(${audio.currentTime / audio.duration})`;
+    });
+
+    toggle.addEventListener('click', () => {
+      if (audio.error) { onError(); return; }
+      if (audio.paused) {
+        audio.play().catch(() => {});
+      } else {
+        audio.pause();
+      }
+    });
+
+    prevBtn.addEventListener('click', () => setTrack(index - 1, true));
+    nextBtn.addEventListener('click', () => setTrack(index + 1, true));
+
+    rail.addEventListener('click', (e) => {
+      if (!audio.duration) return;
+      const rect = rail.getBoundingClientRect();
+      const x = (e.clientX ?? e.touches?.[0]?.clientX ?? 0) - rect.left;
+      audio.currentTime = Math.max(0, Math.min(1, x / rect.width)) * audio.duration;
+    });
+
+    vol.addEventListener('input', () => { audio.volume = parseFloat(vol.value); });
+    audio.volume = parseFloat(vol.value);
+
+    setTrack(0, false);
+  })();
+</script>
+<script>
+  (() => {
+    const strip = document.querySelector('[data-badge-strip]');
+    if (!strip) return;
+    const track = strip.querySelector('[data-badge-track]');
+    const exts = ['png', 'jpg', 'jpeg', 'webp', 'avif', 'gif', 'svg'];
+    const srcDir = 'Images/pf/badges/';
+
+    (async () => {
+      let files = [];
+      try {
+        const res = await fetch(srcDir);
+        if (res.ok) {
+          const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+          files = [...doc.querySelectorAll('a')]
+            .map((a) => decodeURIComponent(a.getAttribute('href') || ''))
+            .filter((f) => !f.startsWith('..') && exts.includes(f.split('.').pop().toLowerCase()));
+        }
+      } catch (e) { /* listing unavailable */ }
+
+      if (!files.length || files.length > 40) {
+        track.innerHTML = '<span class="badge-strip__empty">BADGES.SYS // AWAITING IMAGES</span>';
+        return;
+      }
+
+      [...files, ...files].forEach((f) => {
+        const img = document.createElement('img');
+        img.className = 'badge-strip__item';
+        img.src = srcDir + f;
+        img.alt = f.replace(/\.[^.]+$/, '');
+        img.loading = 'lazy';
+        track.appendChild(img);
+      });
+      strip.classList.add('is-loaded');
+    })();
+  })();
+</script>
+</html>
