@@ -12,13 +12,14 @@
   <link rel="icon" type="image/png" href="Images/Logo_NerdyPunk.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <script>
     try {
       if (sessionStorage.getItem("npdBootSeen") === "1") document.documentElement.classList.add("boot-seen");
     } catch {}
   </script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="design.css">
   <script src="effects.js" defer></script>
 </head>
 <body>
@@ -67,7 +68,7 @@
         <nav class="menu-bar" aria-label="Site menu">
           <a href="index.html">Home</a>
           <a href="index.html#steam-widget-title">Wishlist Game</a>
-          <a href="blog.html">Blog</a>
+          <a href="blog.html" aria-current="page">Blog</a>
           <a href="index.html#contact">Contact</a>
           <div class="menu-bar__icons" aria-label="Social links">
             <a href="https://store.steampowered.com/app/2354580/" target="_blank" rel="noreferrer" aria-label="Steam"><img src="assets/social/steam.png" alt="Steam"></a>
@@ -102,7 +103,7 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M15 5a3 3 0 1 1 .1 1.999l-6.36 3.18a3 3 0 0 1 0 3.642l6.36 3.18a3 3 0 1 1-.89 1.79l-6.67-3.335a3 3 0 1 1 0-6.914l6.67-3.335A3 3 0 0 1 15 5Z"/>
                       </svg>
-                      <span>Share</span>
+                      <span class="blog-post__share-label">Share</span>
                     </button>
                   </div>
                   <h2>Back to simplicity - A case for more personal websites</h2>
@@ -133,7 +134,7 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M15 5a3 3 0 1 1 .1 1.999l-6.36 3.18a3 3 0 0 1 0 3.642l6.36 3.18a3 3 0 1 1-.89 1.79l-6.67-3.335a3 3 0 1 1 0-6.914l6.67-3.335A3 3 0 0 1 15 5Z"/>
                       </svg>
-                      <span>Share</span>
+                      <span class="blog-post__share-label">Share</span>
                     </button>
                   </div>
                   <h2>More Devlogs On The Way</h2>

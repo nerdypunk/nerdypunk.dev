@@ -12,13 +12,14 @@
   <link rel="icon" type="image/png" href="Images/Logo_NerdyPunk.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <script>
     try {
       if (sessionStorage.getItem("npdBootSeen") === "1") document.documentElement.classList.add("boot-seen");
     } catch {}
   </script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="design.css">
   <script src="effects.js" defer></script>
 </head>
 <body>
@@ -65,7 +66,7 @@
         </header>
 
         <nav class="menu-bar" aria-label="Site menu">
-          <a href="#top">Home</a>
+          <a href="#top" aria-current="page">Home</a>
           <a href="#steam-widget-title">Wishlist Game</a>
           <a href="blog.html">Blog</a>
           <a href="#contact">Contact</a>
@@ -159,13 +160,13 @@
                   </div>
                   <div class="steam-widget__actions">
                     <span>AVAILABLE // 2026</span>
-                    <a href="https://store.steampowered.com/app/2354580/" target="_blank" rel="noreferrer">WISHLIST ON STEAM</a>
+                    <a href="https://store.steampowered.com/app/2354580/" target="_blank" rel="noreferrer"><span>WISHLIST ON STEAM</span></a>
                   </div>
                 </div>
                 <aside class="steam-widget__support" aria-label="Wishlist support message">
                   <div class="steam-widget__mini-title">Why Wishlists Matter</div>
-                  <p>Im a solo dev and wishlists help a lot with momentum. They help Steam notice the game, boost visibility, and make launch its launch stronger. also if you wanna try the game there is a FREE DEMO.</p>
-                  <a class="steam-widget__cta" href="https://store.steampowered.com/app/3963110/Spaceman_Memories_Demo/" target="_blank" rel="noreferrer">Play FREE DEMO</a>
+                  <p>As a solo developer one of the biggests means of support are wishlists as they help a lot with momentum on the Steam algorithm. With that said if you have a second add the game to your wishlist. If you're unsure it's your type of game there is also a FREE DEMO already up on Steam so go ahead and check it out.</p>
+                  <a class="steam-widget__cta" href="https://store.steampowered.com/app/3963110/Spaceman_Memories_Demo/" target="_blank" rel="noreferrer"><span>Play FREE DEMO</span></a>
                 </aside>
               </div>
             </div>
@@ -179,7 +180,7 @@
                   <div class="steam-widget__mini-title">Latest Entry Preview</div>
                   <h3>Back to simplicity - A case for more personal websites</h3>
                   <p>I've been thinking a lot about where the internet has taken us, and how hard it has become to make things that feel personal without worrying about engagement. This blog is my attempt to put that energy somewhere more honest.</p>
-                  <a href="blog.html#entry-back-to-simplicity" class="entry-preview__link">Read full entry</a>
+                  <a href="blog.html#entry-back-to-simplicity" class="entry-preview__link"><span>Read full entry</span></a>
                 </article>
                 <div class="blog-home-older">
                   <div class="steam-widget__mini-title steam-widget__mini-title--blue">Older Blog Entries</div>

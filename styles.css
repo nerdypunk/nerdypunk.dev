@@ -1332,9 +1332,7 @@ body::after {
 }
 
 .steam-widget__actions a::after {
-  content: "_";
-  margin-left: 7px;
-  animation: terminalCursor 1.05s steps(1,end) infinite;
+  content: none;
 }
 
 .steam-widget__actions a:hover {
@@ -1542,8 +1540,8 @@ body::after {
 }
 
 .steam-widget__actions a {
-  border: 1px solid #232a0e;
-  border-radius: 2px;
+  border: 1px solid rgba(106,240,189,.36);
+  border-radius: 6px;
   background: linear-gradient(to right, #6fa720 5%, #588a1b 95%);
   color: #d2efa9;
   text-shadow: 1px 1px 2px rgba(0,0,0,.3);
