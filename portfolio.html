@@ -412,6 +412,15 @@
     const track = strip.querySelector('[data-badge-track]');
     const exts = ['png', 'jpg', 'jpeg', 'webp', 'avif', 'gif', 'svg'];
     const srcDir = 'Images/pf/badges/';
+    const DEFAULT_BADGES = [
+      '19dde42fbf874aa102117aa20f08e8fc.avif',
+      '5a3a764bea61362d83e5fdce6c1ad564.avif',
+      '598fb37d8e3a1f127b3ba7700febc92e.png',
+      'd775a166af7de4651d85af5c65a9e17b.avif',
+      'e2d966d52e5f0893ae8120f789dad314.avif',
+      'PIGS_wreath.png',
+      'TurnBasedThursday Fest 2026 Badge.png'
+    ];
 
     (async () => {
       let files = [];
@@ -425,7 +434,10 @@
         }
       } catch (e) { /* listing unavailable */ }
 
-      if (!files.length || files.length > 40) {
+      // GitHub Pages has no directory listings -> fall back to the shipped list.
+      if (!files.length) files = DEFAULT_BADGES.slice();
+
+      if (!files.length) {
         track.innerHTML = '<span class="badge-strip__empty">BADGES.SYS // AWAITING IMAGES</span>';
         return;
       }
