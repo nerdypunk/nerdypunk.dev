@@ -10,6 +10,8 @@
   --line-bright: rgba(186,215,247,.34);
   --ink: #d1e4fa;
   --muted: #93a6bd;
+  /* sampled from the user's reference capture: paragraph body copy */
+  --body-ink: #ccff00;
   --cyan: #b6d9fc;
   --cyan-soft: #b9f5ff;
   --font-display: 'JetBrains Mono', monospace;
@@ -1018,4 +1020,15 @@ body::after { opacity: .1; }
   .music-player { grid-template-columns: 1fr; gap: 0; }
   .music-player__deck { grid-column: 1; }
   .music-player__list { grid-column: 1; grid-row: auto; margin: 0 12px 12px; }
+}
+
+/* --- body copy color: long paragraph text (sampled #ccff00) --- */
+.hero-panel__tagline,
+.steam-widget__support p,
+.portfolio-intro,
+.writer-main .portfolio-intro,
+.portfolio-headline__sub,
+.masthead__sub,
+.contact-copy p + p {
+  color: var(--body-ink);
 }
