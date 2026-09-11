@@ -455,53 +455,5 @@
     setTrack(0, false);
   })();
 </script>
-<script>
-  (() => {
-    const strip = document.querySelector('[data-badge-strip]');
-    if (!strip) return;
-    const track = strip.querySelector('[data-badge-track]');
-    const exts = ['png', 'jpg', 'jpeg', 'webp', 'avif', 'gif', 'svg'];
-    const srcDir = 'Images/pf/badges/';
-    const DEFAULT_BADGES = [
-      '19dde42fbf874aa102117aa20f08e8fc.avif',
-      '5a3a764bea61362d83e5fdce6c1ad564.avif',
-      '598fb37d8e3a1f127b3ba7700febc92e.png',
-      'd775a166af7de4651d85af5c65a9e17b.avif',
-      'e2d966d52e5f0893ae8120f789dad314.avif',
-      'PIGS_wreath.png',
-      'TurnBasedThursday Fest 2026 Badge.png'
-    ];
 
-    (async () => {
-      let files = [];
-      try {
-        const res = await fetch(srcDir);
-        if (res.ok) {
-          const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
-          files = [...doc.querySelectorAll('a')]
-            .map((a) => decodeURIComponent(a.getAttribute('href') || ''))
-            .filter((f) => !f.startsWith('..') && exts.includes(f.split('.').pop().toLowerCase()));
-        }
-      } catch (e) { /* listing unavailable */ }
-
-      // GitHub Pages has no directory listings -> fall back to the shipped list.
-      if (!files.length) files = DEFAULT_BADGES.slice();
-
-      if (!files.length) {
-        track.innerHTML = '<span class="badge-strip__empty">BADGES.SYS // AWAITING IMAGES</span>';
-        return;
-      }
-
-      [...files, ...files].forEach((f) => {
-        const img = document.createElement('img');
-        img.className = 'badge-strip__item';
-        img.src = srcDir + f;
-        img.alt = f.replace(/\.[^.]+$/, '');
-        img.loading = 'lazy';
-        track.appendChild(img);
-      });
-      strip.classList.add('is-loaded');
-    })();
-  })();
-</script>
 </html>

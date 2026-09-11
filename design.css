@@ -440,6 +440,12 @@ body::after { opacity: .1; }
   animation: terminalCursor 1.05s steps(1, end) infinite;
 }
 .portfolio-video { width: 100%; }
+.badge-panel .panel__body {
+  padding: 18px 22px 22px;
+}
+.badge-panel .badge-strip__label {
+  margin-top: 0;
+}
 .badge-strip__label {
   display: flex;
   align-items: center;
