@@ -1071,3 +1071,31 @@ body::after { opacity: .1; }
 .hero-panel__masthead::before {
   border-radius: 50% !important;
 }
+
+/* --- custom pixel cursors (<=32px so Windows honours them) --- */
+html,
+body {
+  cursor: url("Images/ui/cursor-arrow.png") 1 1, auto;
+}
+a,
+button,
+[role="button"],
+summary,
+select,
+label,
+.blog-post__share,
+.lightbox__close,
+.portfolio-tile img,
+.blog-post__media img,
+.music-player__toggle,
+.music-player__nav,
+.music-player__row,
+.music-player__rail,
+.music-player__volume input {
+  cursor: url("Images/ui/cursor-link.png") 1 1, pointer;
+}
+input[type="text"],
+input[type="email"],
+textarea {
+  cursor: text;
+}
