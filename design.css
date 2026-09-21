@@ -723,6 +723,12 @@ body::after { opacity: .1; }
   gap: 14px;
   padding: 14px 16px;
 }
+.music-player__transport {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 0 0 auto;
+}
 .music-player__vinyl {
   position: relative;
   width: 138px;
@@ -1017,9 +1023,27 @@ body::after { opacity: .1; }
   .music-player__eqmini i { animation: none !important; }
 }
 @media (max-width: 760px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
-  .music-player { grid-template-columns: 1fr; gap: 0; }
-  .music-player__deck { grid-column: 1; }
-  .music-player__list { grid-column: 1; grid-row: auto; margin: 0 12px 12px; }
+  .music-player { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .music-player__deck { grid-column: 1; min-width: 0; }
+  .music-player__list { grid-column: 1; grid-row: auto; margin: 0 12px 12px; min-width: 0; }
+  .music-player__eq { min-width: 0; }
+  /* deck channel stacks: vinyl + track info, transport on its own row */
+  .music-player__channel {
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    padding: 12px;
+    min-width: 0;
+  }
+  .music-player__vinyl { width: 104px; height: 104px; }
+  .music-player__label-disc { width: 52px; height: 52px; margin: -26px 0 0 -26px; }
+  .music-player__info { order: 2; flex: 1 1 120px; min-width: 0; }
+  .music-player__transport { order: 3; flex: 1 0 100%; gap: 10px; }
+  .music-player__status { order: 4; margin-left: 0; }
+  .music-player__row,
+  .music-player__rowcopy { min-width: 0; }
+  .music-player__console { gap: 10px; padding: 0 12px 12px; min-width: 0; }
+  .music-player__volume { min-width: 0; padding: 0 12px 14px; }
+  .music-player__volume input { min-width: 0; }
 }
 
 /* --- body copy color: long paragraph text (sampled #ccff00) --- */
@@ -1031,4 +1055,19 @@ body::after { opacity: .1; }
 .masthead__sub,
 .contact-copy p + p {
   color: var(--body-ink);
+}
+
+/* --- squared corners: strip every rounded UI corner --- */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+/* exceptions: genuinely circular objects, not UI corners */
+.music-player__vinyl,
+.music-player__vinyl::after,
+.music-player__label-disc,
+.music-player__art,
+.hero-panel__masthead::before {
+  border-radius: 50% !important;
 }
