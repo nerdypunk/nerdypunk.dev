@@ -94,7 +94,7 @@ body::after { opacity: .1; }
   background: repeating-linear-gradient(to bottom, rgba(182,217,252,.2) 0 6px, transparent 6px 11px);
   opacity: .35; filter: none;
 }
-.hero-panel__logo { width: min(240px,85%); filter: drop-shadow(2px 2px 0 rgba(255,59,212,.15)); }
+.hero-panel__logo { width: min(300px, 88%); height: auto; filter: drop-shadow(2px 2px 0 rgba(255,59,212,.15)); }
 .hero-panel__eyebrow { color: #c7d3ea; font-size: 11px; letter-spacing: .08em; }
 .hero-panel__tagline, .steam-widget__support p { font: 400 14px/1.8 var(--font-terminal); color: #c7d3ea; text-shadow: none; letter-spacing: 0; }
 .hero-panel__intro::after { font-size: 10px; margin-top: 20px; }
