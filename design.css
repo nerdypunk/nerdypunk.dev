@@ -1151,3 +1151,73 @@ textarea {
 @media (max-width: 640px) {
   .contact-panel .contact-copy { padding: 24px 16px; }
 }
+
+/* Earthrise by bas3line / ascii.rest (MIT): cropped behind the blog content. */
+#blog .social-panel__layout {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+#blog .social-panel__layout::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(3, 5, 11, .88), rgba(3, 5, 11, .68) 55%, rgba(3, 5, 11, .45));
+}
+.blog-art,
+.links-art {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  overflow: hidden;
+  background: #030408;
+  pointer-events: none;
+}
+.blog-art canvas,
+.links-art canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 35%;
+}
+#blog .blog-home-layout {
+  text-shadow: 0 2px 6px #03050b;
+}
+#blog .entry-preview p {
+  color: var(--ink);
+}
+@media (max-width: 900px) {
+  #blog .social-panel__layout::after {
+    background: rgba(3, 5, 11, .76);
+  }
+}
+
+/* Repeat Earthrise beneath the links, with a little more breathing room. */
+.icon-strip-panel .icon-strip {
+  --links-banner-height: 180px;
+  position: relative;
+  isolation: isolate;
+  min-height: var(--links-banner-height);
+  align-content: center;
+  overflow: hidden;
+}
+.icon-strip-panel .icon-strip::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(3, 5, 11, .48);
+}
+.icon-strip-panel .icon-strip a:nth-child(n) {
+  background: rgba(9, 15, 30, .8);
+}
+.icon-strip-panel .icon-strip a:hover {
+  background: rgba(31, 43, 62, .92);
+}
+@media (max-width: 640px) {
+  .icon-strip-panel .icon-strip { --links-banner-height: 200px; }
+}
