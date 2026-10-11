@@ -773,7 +773,7 @@ body::after { opacity: .1; }
   height: 64px;
   margin: -32px 0 0 -32px;
   border-radius: 50%;
-  background: url("../Images/pf/vynil.png") center / cover no-repeat, #101826;
+  background: url("../Images/pf/vynil.webp") center / cover no-repeat, #101826;
   border: 1px solid rgba(186, 215, 247, .25);
   overflow: hidden;
 }
@@ -886,7 +886,7 @@ body::after { opacity: .1; }
   width: 100%;
   height: 100%;
   border-radius: 4px;
-  background: url("../Images/pf/vynil.png") center / cover no-repeat, #0b101c;
+  background: url("../Images/pf/vynil.webp") center / cover no-repeat, #0b101c;
 }
 .music-player__mini-vinyl::after {
   content: none;

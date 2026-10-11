@@ -55,24 +55,28 @@
   );
   const mobilePerformanceMode = mobilePerformanceQuery.matches;
 
-  if (mobilePerformanceMode) {
-    const video = document.querySelector(".video-player video");
+  // Stop decoding the trailer while it is scrolled away. Only resume it if we were the ones
+  // who paused it, so a visitor's own pause sticks.
+  const video = document.querySelector(".video-player video");
 
-    if (video && "IntersectionObserver" in window) {
-      const videoObserver = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          const playback = video.play();
-          if (playback) playback.catch(() => {});
-        } else {
-          video.pause();
-        }
-      }, { rootMargin: "80px 0px" });
+  if (video && "IntersectionObserver" in window) {
+    let pausedOffscreen = false;
+    const videoObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!pausedOffscreen) return;
+        pausedOffscreen = false;
+        const playback = video.play();
+        if (playback) playback.catch(() => {});
+      } else if (!video.paused) {
+        pausedOffscreen = true;
+        video.pause();
+      }
+    }, { rootMargin: "80px 0px" });
 
-      videoObserver.observe(video);
-    }
-
-    return;
+    videoObserver.observe(video);
   }
+
+  if (mobilePerformanceMode) return;
 
   const layer = document.createElement("div");
   layer.className = "code-rain";
@@ -117,11 +121,11 @@
   const DEFAULT_BADGES = [
     '19dde42fbf874aa102117aa20f08e8fc.avif',
     '5a3a764bea61362d83e5fdce6c1ad564.avif',
-    '598fb37d8e3a1f127b3ba7700febc92e.png',
+    '598fb37d8e3a1f127b3ba7700febc92e.webp',
     'd775a166af7de4651d85af5c65a9e17b.avif',
     'e2d966d52e5f0893ae8120f789dad314.avif',
-    'PIGS_wreath.png',
-    'TurnBasedThursday Fest 2026 Badge.png'
+    'PIGS_wreath.webp',
+    'TurnBasedThursday Fest 2026 Badge.webp'
   ];
 
   (async () => {

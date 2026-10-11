@@ -94,7 +94,7 @@
             <div class="panel__title" id="intro-title">About.exe<span class="section-loader section-loader--links" aria-hidden="true"></span></div>
             <div class="panel__body">
               <div class="masthead">
-                <img class="masthead__avatar" src="Images/pf/avatar.jpeg" alt="Avatar of Tulio Tercero aka NerdyPunkDev" width="176" height="176">
+                <img class="masthead__avatar" src="Images/pf/avatar-384.webp" alt="Avatar of Tulio Tercero aka NerdyPunkDev" width="176" height="176">
                 <div class="masthead__content">
                   <h2 class="portfolio-headline masthead__text"><span>Hi I'm Tulio...<br>But I go by NerdyPunkDev on the cyberspace.</span></h2>
                   <p class="portfolio-headline__sub masthead__sub">I'm a serial builder and artist from Honduras.<br>I'm always on the lookout to see what's my next hyperfixation.</p>
@@ -145,19 +145,19 @@
               <p class="portfolio-intro">These are illustrations that I've made throughout the last decade, all using digital techniques pre AI era.</p>
               <div class="portfolio-grid">
                 <figure class="portfolio-tile">
-                  <img src="Images/pf/1ebd2023215125.563213d7d9243.webp" alt="Portfolio illustration 01">
+                  <img src="Images/pf/1ebd2023215125.563213d7d9243-1100.webp" data-full="Images/pf/1ebd2023215125.563213d7d9243.webp" loading="lazy" decoding="async" alt="Portfolio illustration 01">
                   <figcaption class="portfolio-tile__label">ILLUSTRATION // 01</figcaption>
                 </figure>
                 <figure class="portfolio-tile">
-                  <img src="Images/pf/314b5221396189.563008172f91f.webp" alt="Portfolio illustration 02">
+                  <img src="Images/pf/314b5221396189.563008172f91f-1100.webp" data-full="Images/pf/314b5221396189.563008172f91f.webp" loading="lazy" decoding="async" alt="Portfolio illustration 02">
                   <figcaption class="portfolio-tile__label">ILLUSTRATION // 02</figcaption>
                 </figure>
                 <figure class="portfolio-tile">
-                  <img src="Images/pf/62fa9b20810611.562f17d2104b9.webp" alt="Portfolio graphic design 01">
+                  <img src="Images/pf/62fa9b20810611.562f17d2104b9-1100.webp" data-full="Images/pf/62fa9b20810611.562f17d2104b9.webp" loading="lazy" decoding="async" alt="Portfolio graphic design 01">
                   <figcaption class="portfolio-tile__label">GRAPHIC DESIGN // 01</figcaption>
                 </figure>
                 <figure class="portfolio-tile">
-                  <img src="Images/pf/d0ee8115440511.56291169c58b1.webp" alt="Portfolio graphic design 02">
+                  <img src="Images/pf/d0ee8115440511.56291169c58b1-1100.webp" data-full="Images/pf/d0ee8115440511.56291169c58b1.webp" loading="lazy" decoding="async" alt="Portfolio graphic design 02">
                   <figcaption class="portfolio-tile__label">GRAPHIC DESIGN // 02</figcaption>
                 </figure>
               </div>
@@ -231,25 +231,25 @@
                     <a class="portfolio-cta-btn" href="https://bikepacking.com/plog/riding-honduras/" target="_blank" rel="noreferrer"><span>Read full story</span></a>
                   </div>
                   <div class="writer-source">
-                    <img src="Images/pf/writer/bikepacking-logo-v4.png" alt="bikepacking.com logo" width="170" height="32">
+                    <img src="Images/pf/writer/bikepacking-logo-v4.png" loading="lazy" alt="bikepacking.com logo" width="170" height="32">
                     <span>Featured on bikepacking.com</span>
                   </div>
                 </div>
                 <div class="writer-media">
                   <figure class="portfolio-tile">
-                    <img src="Images/pf/writer/honduras-5.jpg" alt="Bikepacking road across Honduras">
+                    <img src="Images/pf/writer/honduras-5-720.webp" data-full="Images/pf/writer/honduras-5.jpg" loading="lazy" decoding="async" alt="Bikepacking road across Honduras">
                     <figcaption class="portfolio-tile__label">HONDURAS // 01</figcaption>
                   </figure>
                   <figure class="portfolio-tile">
-                    <img src="Images/pf/writer/honduras-12.jpg" alt="Dry road and landscape in southern Honduras">
+                    <img src="Images/pf/writer/honduras-12-720.webp" data-full="Images/pf/writer/honduras-12.jpg" loading="lazy" decoding="async" alt="Dry road and landscape in southern Honduras">
                     <figcaption class="portfolio-tile__label">HONDURAS // 02</figcaption>
                   </figure>
                   <figure class="portfolio-tile">
-                    <img src="Images/pf/writer/honduras-8.jpg" alt="Mountain roads near La Esperanza">
+                    <img src="Images/pf/writer/honduras-8-720.webp" data-full="Images/pf/writer/honduras-8.jpg" loading="lazy" decoding="async" alt="Mountain roads near La Esperanza">
                     <figcaption class="portfolio-tile__label">HONDURAS // 03</figcaption>
                   </figure>
                   <figure class="portfolio-tile">
-                    <img src="Images/pf/writer/honduras-28.jpg" alt="Riding through the Honduran countryside">
+                    <img src="Images/pf/writer/honduras-28-720.webp" data-full="Images/pf/writer/honduras-28.jpg" loading="lazy" decoding="async" alt="Riding through the Honduran countryside">
                     <figcaption class="portfolio-tile__label">HONDURAS // 04</figcaption>
                   </figure>
                 </div>
@@ -305,7 +305,7 @@
     const open = (image) => {
       const tile = image.closest('.portfolio-tile');
       const label = tile?.querySelector('.portfolio-tile__label');
-      lightboxImage.src = image.src;
+      lightboxImage.src = image.dataset.full || image.src;
       lightboxImage.alt = image.alt;
       lightboxCaption.textContent = label?.textContent?.trim() || '';
       lightbox.hidden = false;
