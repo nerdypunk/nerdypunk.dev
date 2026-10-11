@@ -1206,7 +1206,10 @@ textarea {
   }
 }
 
-/* Repeat Earthrise beneath the links, with a little more breathing room. */
+/* Tokyo rain by bas3line / ascii.rest (MIT) beneath the links, framed near the top of the
+   scene so the strip shows the neon signs rather than the dark road. */
+.links-art { background: #07060d; }
+.links-art canvas { object-position: 50% 10%; }
 .icon-strip-panel .icon-strip {
   --links-banner-height: 180px;
   position: relative;
