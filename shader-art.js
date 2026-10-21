@@ -1,4 +1,6 @@
-// WebGPU effects powered by shaders (https://github.com/shader-effects-inc/shaders, MIT).
+// WebGPU effects powered by shaders (https://github.com/shader-effects-inc/shaders), proprietary:
+// Shader Effects License Agreement v1.5, which ships in the npm package. It is loaded from
+// jsDelivr rather than vendored because the license forbids redistributing its build artifacts.
 // Everything here is progressive: without WebGPU, with reduced motion, or on phones (same
 // test as effects.js uses to drop the code rain), the page keeps its original CSS
 // background, logo and capsule image untouched and never downloads the shader bundle.
