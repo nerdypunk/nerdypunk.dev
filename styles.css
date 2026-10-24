@@ -1006,6 +1006,7 @@ body::before {
   text-shadow: 0 0 14px rgba(98,230,255,.5);
 }
 
+.address-bar__field { padding-right: 104px; }
 .address-bar__field::after { content: "接続 // SECURE"; }
 
 .hero-panel,
@@ -1128,6 +1129,7 @@ body::before {
 @media (max-width: 640px) {
   .title-bar__name::after { display: none; }
   .desktop::before, .desktop::after { display: none; }
+  .address-bar__field { padding-right: 44px; }
   .address-bar__field::after { content: "接続"; }
   .hero-panel__masthead::after { right: 7px; }
 }
@@ -1521,7 +1523,9 @@ body::after {
 #steam-widget-title::after { content: "ストア接続 // STORE LINK"; }
 #blog-entries-title::after,
 #blog-window-title::after { content: "通信ログ // ARCHIVE"; }
-#contact .panel__title::after { content: "直通回線 // OPEN"; }
+#contact .panel__title::after,
+#contacto .panel__title::after { content: "直通回線 // OPEN"; }
+#recursos-title::after { content: "宇宙資料 // SPACE APPS"; }
 #links-strip-title::after { content: "外部リンク // PORTS"; }
 
 .panel__title::after {

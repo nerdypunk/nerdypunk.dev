@@ -1163,6 +1163,233 @@ textarea {
   .contact-panel .contact-copy { padding: 24px 16px; }
 }
 
+/* Resource rows on the Space Apps resources page: index, copy, then the action on the right. */
+.resource-list {
+  display: grid;
+  gap: 12px;
+  max-width: 920px;
+  margin: 28px auto 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: resource;
+}
+.resource-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "num tag  btn"
+    "num name btn"
+    "num copy btn";
+  align-items: center;
+  gap: 6px 24px;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(186,214,247,.03);
+  box-shadow: inset 0 1px rgba(216,236,248,.06);
+  text-align: left;
+  counter-increment: resource;
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+.resource-card:hover {
+  border-color: var(--line-bright);
+  background: rgba(186,214,247,.06);
+  box-shadow: inset 3px 0 0 var(--pink), inset 0 1px rgba(216,236,248,.06);
+}
+.resource-card::before {
+  content: counter(resource, decimal-leading-zero);
+  grid-area: num;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  padding-right: 24px;
+  border-right: 1px solid var(--line);
+  color: var(--pink-soft);
+  font: 500 22px/1 var(--font-terminal);
+  letter-spacing: .04em;
+}
+.resource-card__tag {
+  grid-area: tag;
+  color: var(--success);
+  font: 500 10px/1 var(--font-terminal);
+  letter-spacing: .08em;
+}
+.resource-card__name {
+  grid-area: name;
+  margin: 0;
+  color: #d1e4fa;
+  font: 500 clamp(20px,2.2vw,24px)/1.2 var(--font-heading);
+  letter-spacing: -.02em;
+}
+.resource-card__copy {
+  grid-area: copy;
+  margin: 0;
+  color: var(--body-ink);
+  font: 400 .92rem/1.6 var(--font-terminal);
+}
+.resource-card .portfolio-cta-btn {
+  grid-area: btn;
+  min-width: 220px;
+}
+button.portfolio-cta-btn { font: inherit; cursor: pointer; }
+@media (max-width: 760px) {
+  .resource-card {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "num  tag"
+      "num  name"
+      "copy copy"
+      "btn  btn";
+    gap: 6px 16px;
+    padding: 16px;
+  }
+  .resource-card::before { padding-right: 16px; font-size: 18px; }
+  .resource-card__copy { margin-top: 6px; }
+  .resource-card .portfolio-cta-btn { justify-self: stretch; min-width: 0; margin-top: 8px; }
+}
+
+/* Slide viewer for the PDF deck: one page at a time, scaled to fit the stage. */
+.deck {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(2,4,10,.82);
+  backdrop-filter: blur(18px);
+}
+.deck[hidden] { display: none; }
+.deck__window {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: min(100%, 1280px);
+  height: min(calc(100vh - 48px), 800px);
+  border: 1px solid var(--line-bright);
+  border-radius: 10px;
+  background: #050812;
+  overflow: hidden;
+}
+.deck__window:fullscreen { width: 100%; height: 100%; border: 0; border-radius: 0; }
+.deck__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  color: #9da7ba;
+  font: 500 11px/1 var(--font-terminal);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.deck__title { color: var(--cyan-soft); }
+.deck__count { color: var(--success); }
+.deck__actions { display: flex; gap: 8px; margin-left: auto; }
+.deck__btn {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(186,214,247,.06);
+  color: #d1e4fa;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+.deck__btn:hover { border-color: var(--line-bright); background: rgba(186,214,247,.12); text-decoration: none; }
+.deck__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  overflow: hidden;
+}
+.deck__canvas { display: block; }
+.deck__status {
+  position: absolute;
+  margin: 0;
+  padding: 0 24px;
+  color: #9da7ba;
+  font: 500 12px/1.6 var(--font-terminal);
+  text-align: center;
+}
+.deck__nav {
+  position: absolute;
+  top: 50%;
+  width: 44px;
+  height: 64px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(5,8,18,.7);
+  color: #d1e4fa;
+  font-size: 22px;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.deck__nav--prev { left: 12px; }
+.deck__nav--next { right: 12px; }
+.deck__nav:hover:not(:disabled) { border-color: var(--line-bright); color: var(--cyan-soft); }
+.deck__nav:disabled { opacity: .25; cursor: default; }
+@media (max-width: 640px) {
+  .deck { padding: 0; }
+  .deck__window { height: 100%; border: 0; border-radius: 0; }
+  .deck__title, .deck [data-deck-fullscreen] { display: none; }
+  .deck__nav { top: auto; bottom: 24px; width: 64px; height: 48px; font-size: 18px; transform: none; }
+  .deck__nav--prev { left: calc(50% - 72px); }
+  .deck__nav--next { right: calc(50% - 72px); }
+}
+
+/* Handle list on the Space Apps resources page: Discord copies, Twitter links. */
+.contact-handles {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0 0;
+}
+.contact-handles__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+}
+.contact-handles dt {
+  min-width: 72px;
+  color: var(--cyan-soft);
+  font: 500 11px/1 var(--font-display);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px #03050b;
+}
+.contact-handles dd {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0;
+}
+.contact-handles__copy {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 500 clamp(20px,3vw,32px)/1.4 var(--font-heading);
+  color: #7ae2ff;
+  text-shadow: 2px 2px 0 rgba(255,59,212,.28), 0 0 14px rgba(122,226,255,.4);
+  letter-spacing: -.025em;
+  cursor: copy;
+}
+.contact-handles__copy:hover,
+.contact-handles__copy:focus-visible {
+  color: #c4f4ff;
+  text-shadow: 2px 2px 0 rgba(255,59,212,.45), 0 0 22px rgba(122,226,255,.6);
+}
+.contact-handles__status {
+  color: var(--success);
+  font: 500 11px/1 var(--font-terminal);
+  letter-spacing: .08em;
+}
+@media (max-width: 640px) {
+  .contact-handles__copy { font-size: clamp(16px,5vw,22px); overflow-wrap: anywhere; }
+}
+
 /* Earthrise by bas3line / ascii.rest (MIT): cropped behind the blog content. */
 #blog .social-panel__layout {
   position: relative;
