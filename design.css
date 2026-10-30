@@ -99,6 +99,8 @@ body::after { opacity: .1; }
 .hero-panel__logo { width: min(300px, 88%); height: auto; filter: drop-shadow(2px 2px 0 rgba(255,59,212,.15)); }
 .hero-panel__eyebrow { color: #c7d3ea; font-size: 11px; letter-spacing: .08em; }
 .hero-panel__tagline, .steam-widget__support p { font: 400 14px/1.8 var(--font-terminal); color: #c7d3ea; text-shadow: none; letter-spacing: 0; }
+.hero-panel__tagline a { color: #7ae2ff; text-decoration: underline; text-decoration-color: rgba(122,226,255,.4); text-underline-offset: 3px; }
+.hero-panel__tagline a:hover { color: #c4f4ff; text-decoration-color: currentColor; }
 .hero-panel__intro::after { font-size: 10px; margin-top: 20px; }
 .video-player { border-color: var(--line-bright); border-radius: 16px; background: rgba(3,6,14,.78); box-shadow: var(--frost-edge); }
 .video-player__topbar, .video-player__controls { min-height: 40px; padding: 10px 12px; background: rgba(186,214,247,.035); color: #c7d3ea; font-size: 10px; letter-spacing: .02em; }
