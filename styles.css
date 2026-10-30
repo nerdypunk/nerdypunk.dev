@@ -1499,7 +1499,6 @@ body::after {
 .menu-bar > a:nth-child(2)::after { content: "予約登録"; }
 .menu-bar > a:nth-child(3)::after { content: "通信ログ"; }
 .menu-bar > a:nth-child(4)::after { content: "接続"; }
-.menu-bar > a:nth-child(5)::after { content: "展示会"; }
 
 .address-bar > span {
   font-size: 0;

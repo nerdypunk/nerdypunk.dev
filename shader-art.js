@@ -1,9 +1,11 @@
-// WebGPU effects powered by shaders (https://github.com/shader-effects-inc/shaders), proprietary:
-// Shader Effects License Agreement v1.5, which ships in the npm package. It is loaded from
-// jsDelivr rather than vendored because the license forbids redistributing its build artifacts.
-// Everything here is progressive: without WebGPU, with reduced motion, or on phones (same
-// test as effects.js uses to drop the code rain), the page keeps its original CSS
-// background, logo and capsule image untouched and never downloads the shader bundle.
+// Logo and capsule effects: WebGPU, powered by shaders (https://github.com/shader-effects-inc/shaders),
+// proprietary: Shader Effects License Agreement v1.5, which ships in the npm package. It is loaded
+// from jsDelivr rather than vendored because the license forbids redistributing its build artifacts.
+// Background: the 3D ("volumetric") version of Rezmason's Matrix digital rain, WebGL, vendored
+// in assets/matrix (MIT).
+// Everything here is progressive: with reduced motion or on phones (same test as effects.js uses
+// to drop the code rain) nothing loads, and without WebGL / WebGPU the page keeps its original
+// CSS background, logo and capsule image untouched.
 const SHADERS_URL = 'https://cdn.jsdelivr.net/npm/shaders@3.2.473/dist/js/bundle.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -15,20 +17,26 @@ const mobilePerformanceMode = window.matchMedia(
 // trailer video for the GPU; these effects read fine at a lower, film-like rate.
 const SHADER_FPS = 15;
 
-const NEON = { violet: '#663af3', pink: '#ff3bd4', cyan: '#62e6ff' };
-
-// Ambient neon aurora behind the desktop. It is soft enough to render at low resolution.
-const backgroundPreset = {
-  components: [
-    {
-      type: 'Aurora', id: 'bg-aurora',
-      props: {
-        colorA: NEON.violet, colorB: NEON.pink, colorC: NEON.cyan,
-        intensity: 95, curtainCount: 3, speed: 2, waviness: 90,
-        rayDensity: 45, height: 150, balance: 45, center: { x: 0.5, y: 0 }, seed: 17,
-      },
-    },
+// Matrix's 3D preset in the site's sober palette: glyphs fade from navy through steel blue to a
+// pale cyan, on the page's navy. Full device resolution, 60fps for smooth motion, and calmer
+// than the preset: slower fall, a slow drift towards the camera, and glyphs that rarely change.
+const rgb = (...values) => ({ space: 'rgb', values });
+const MATRIX = {
+  version: '3d',
+  resolution: 1,
+  fps: 60,
+  fallSpeed: 0.14, // preset 0.5
+  forwardSpeed: 0.04, // preset 0.25: how fast glyphs approach the camera
+  cycleSpeed: 0.005, // preset 0.03; applied per rendered frame, so this is ~0.3 changes/s at 60fps
+  backgroundColor: rgb(0.008, 0.015, 0.035),
+  palette: [
+    { color: rgb(0, 0, 0), at: 0 },
+    { color: rgb(0.03, 0.07, 0.14), at: 0.2 },
+    { color: rgb(0.25, 0.45, 0.62), at: 0.7 },
+    { color: rgb(0.45, 0.68, 0.82), at: 0.8 },
   ],
+  cursorColor: rgb(0.7, 0.86, 0.95),
+  cursorIntensity: 1.5,
 };
 
 // Logo with a liquid ripple under the cursor and the occasional glitch burst.
@@ -165,31 +173,21 @@ const overlayImage = async (createShader, img, presetFor, options) => {
   }
 };
 
-// The library sizes its raster from the canvas's parent, so the backdrop lives in a frame
-// laid out at a fraction of the viewport and scaled up in CSS (see .shader-backdrop):
-// far fewer pixels to shade for the same coverage.
-const mountBackground = async (createShader, options) => {
-  const frame = document.createElement('div');
-  frame.className = 'shader-backdrop';
-  frame.setAttribute('aria-hidden', 'true');
+const mountBackground = async () => {
   const canvas = document.createElement('canvas');
-  frame.appendChild(canvas);
-  document.body.prepend(frame);
-
+  canvas.className = 'shader-backdrop';
+  canvas.setAttribute('aria-hidden', 'true');
+  document.body.prepend(canvas);
   try {
-    const shader = await createShader(canvas, backgroundPreset, {
-      ...options,
-      onReady: () => frame.classList.add('is-ready'),
-      onError: () => frame.remove(),
-    });
-    // Its first measurement uses the transformed (full-size) box; pin it to the layout size.
-    const fit = () => shader.resize(frame.offsetWidth, frame.offsetHeight);
-    fit();
-    window.addEventListener('resize', fit);
-    throttle(shader);
+    const { default: runMatrix } = await import('./assets/matrix/matrix-rain.js');
+    await runMatrix(canvas, MATRIX);
   } catch {
-    frame.remove();
+    canvas.remove(); // no WebGL, or the files failed to load
+    return;
   }
+  // Fade in from the first rendered frame, and let it replace the CSS code rain.
+  canvas.classList.add('is-ready');
+  document.body.classList.add('has-matrix');
 };
 
 // Short burst of tape damage that eases back to a clean signal.
@@ -227,8 +225,6 @@ const start = async () => {
   const gpu = (await createSharedDevice()) ?? undefined;
   const options = { gpu, disableTelemetry: true };
 
-  mountBackground(createShader, options);
-
   const logo = document.querySelector('.hero-panel__logo');
   if (logo) {
     overlayImage(createShader, logo, logoPreset, options).then((shader) => {
@@ -247,7 +243,12 @@ const start = async () => {
   }
 };
 
-// Let the boot loader and first paint finish before pulling in the GPU bundle.
+const backgroundShown = reducedMotion || mobilePerformanceMode ? Promise.resolve() : mountBackground();
+
+// Let the boot loader, first paint and the rain's first frame land before pulling in the GPU
+// bundle: its shader compiles otherwise hold the rain back by seconds.
 const idle = (cb) => (window.requestIdleCallback ? requestIdleCallback(cb, { timeout: 1500 }) : setTimeout(cb, 300));
-if (document.readyState === 'complete') idle(start);
-else window.addEventListener('load', () => idle(start), { once: true });
+const loaded = document.readyState === 'complete'
+  ? Promise.resolve()
+  : new Promise((resolve) => window.addEventListener('load', resolve, { once: true }));
+Promise.all([loaded, backgroundShown]).then(() => idle(start));

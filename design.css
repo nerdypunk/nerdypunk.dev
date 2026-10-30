@@ -21,9 +21,9 @@
   --radius-panel: 16px;
   --radius-control: 999px;
   --frost-edge: inset 0 1px 1px rgba(216,236,248,.28), inset 0 24px 48px rgba(168,216,245,.065), inset 0 -1px 1px rgba(174,209,255,.07);
-  /* Sampled from nerdypunk.dev: navy canvas with peripheral purple/cyan light. */
-  --tokyo-atmosphere: radial-gradient(circle at 12% 8%, rgba(255,59,212,.22), transparent 28rem), radial-gradient(circle at 88% 22%, rgba(34,213,255,.18), transparent 32rem), linear-gradient(145deg, rgba(72,31,135,.2), transparent 38%);
-  --canvas-depth: linear-gradient(180deg, #08071a 0%, #03050b 58%, #050811 100%);
+  /* Dark navy canvas with dim steel and teal light at the edges. */
+  --tokyo-atmosphere: radial-gradient(circle at 12% 8%, rgba(70,105,155,.14), transparent 28rem), radial-gradient(circle at 88% 22%, rgba(40,110,130,.1), transparent 32rem), linear-gradient(145deg, rgba(22,34,61,.25), transparent 38%);
+  --canvas-depth: linear-gradient(180deg, #050710 0%, #020308 58%, #03050a 100%);
 }
 body {
   background: var(--tokyo-atmosphere), var(--canvas-depth);
@@ -35,6 +35,13 @@ body::before {
   background-size: 80px 80px;
 }
 body::after { opacity: .1; }
+/* Same signal bands and glitch as styles.css, in steel and teal instead of pink and cyan. */
+body::after {
+  background:
+    linear-gradient(90deg, transparent 0 5%, rgba(110,140,185,.16) 5% 37%, transparent 37% 100%),
+    linear-gradient(90deg, transparent 0 54%, rgba(60,130,150,.12) 54% 93%, transparent 93% 100%),
+    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255,255,255,.035) 3px 4px);
+}
 .code-rain { opacity: .28; }
 .desktop { padding: 40px 24px; }
 .desktop::before { color: rgba(185,245,255,.07); text-shadow: none; }
@@ -99,7 +106,7 @@ body::after { opacity: .1; }
 .hero-panel__logo { width: min(300px, 88%); height: auto; filter: drop-shadow(2px 2px 0 rgba(255,59,212,.15)); }
 .hero-panel__eyebrow { color: #c7d3ea; font-size: 11px; letter-spacing: .08em; }
 .hero-panel__tagline, .steam-widget__support p { font: 400 14px/1.8 var(--font-terminal); color: #c7d3ea; text-shadow: none; letter-spacing: 0; }
-.hero-panel__tagline a { color: #7ae2ff; text-decoration: underline; text-decoration-color: rgba(122,226,255,.4); text-underline-offset: 3px; }
+.hero-panel__tagline a { white-space: nowrap; color: #7ae2ff; text-decoration: underline; text-decoration-color: rgba(122,226,255,.4); text-underline-offset: 3px; }
 .hero-panel__tagline a:hover { color: #c4f4ff; text-decoration-color: currentColor; }
 .hero-panel__intro::after { font-size: 10px; margin-top: 20px; }
 .video-player { border-color: var(--line-bright); border-radius: 16px; background: rgba(3,6,14,.78); box-shadow: var(--frost-edge); }
@@ -1465,25 +1472,28 @@ button.portfolio-cta-btn { font: inherit; cursor: pointer; }
   .icon-strip-panel .icon-strip { --links-banner-height: 200px; }
 }
 
-/* WebGPU shader layers (shader-art.js). Each fades in only once its first frame is drawn. */
-/* The aurora's frame is laid out at 1/4 size and scaled up: the renderer sizes its raster
-   from layout size, so this cuts its pixel work ~16x with no visible loss on a soft gradient. */
+/* Shader layers (shader-art.js). Each fades in only once its first frame is drawn. */
+/* Matrix 3D rain behind the desktop, rendered at device resolution to this box. It fades in
+   from its first drawn frame and stands in for the CSS code rain while it runs. */
 .shader-backdrop {
-  --backdrop-scale: 4;
   position: fixed;
   z-index: -1;
-  top: 0;
-  left: 0;
-  width: calc(100vw / var(--backdrop-scale));
-  height: calc(100vh / var(--backdrop-scale));
-  transform: scale(var(--backdrop-scale));
-  transform-origin: 0 0;
+  inset: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 1.6s ease;
+  transition: opacity 1.2s ease;
 }
-.shader-backdrop.is-ready { opacity: .8; }
-.shader-backdrop canvas { display: block; width: 100%; height: 100%; }
+.shader-backdrop.is-ready { opacity: 1; }
+.code-rain { transition: opacity 1.2s ease, visibility 0s linear 1.2s; }
+.has-matrix .code-rain { opacity: 0; visibility: hidden; }
+/* The pink rain columns read magenta against the sober background; steel instead. */
+.code-rain__column[data-tone="pink"] {
+  color: rgba(120,150,190,var(--alpha));
+  text-shadow: 0 0 8px rgba(120,150,190,.3);
+}
 
 .shader-overlay {
   position: absolute;
