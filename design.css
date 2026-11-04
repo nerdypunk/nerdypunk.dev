@@ -1516,3 +1516,10 @@ button.portfolio-cta-btn { font: inherit; cursor: pointer; }
    every display frame (165 times a second), so the glass was re-blurred constantly and scrolling
    stuttered. Same path and speed in half-pixel steps: it now changes ~5 times a second. */
 body::before { animation: gridFloat 24s steps(112, end) infinite, gridGlitch 8s steps(1, end) infinite; }
+
+/* On phones a post's own card made a third nested box and squeezed the text; the posts sit
+   straight in the blog panel there, separated by a line. */
+@media (max-width: 640px) {
+  .blog-stream .blog-post { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+  .blog-stream .blog-post + .blog-post { padding-top: 24px; border-top: 1px solid var(--line); }
+}
