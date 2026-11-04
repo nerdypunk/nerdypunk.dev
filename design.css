@@ -1511,3 +1511,8 @@ button.portfolio-cta-btn { font: inherit; cursor: pointer; }
   filter: drop-shadow(2px 2px 0 rgba(255,59,212,.15));
 }
 .steam-card__capsule + .shader-overlay { border-radius: 2px; }
+
+/* The grid drifts 56px over 24s; a continuous drift changed the layer behind the frosted window on
+   every display frame (165 times a second), so the glass was re-blurred constantly and scrolling
+   stuttered. Same path and speed in half-pixel steps: it now changes ~5 times a second. */
+body::before { animation: gridFloat 24s steps(112, end) infinite, gridGlitch 8s steps(1, end) infinite; }

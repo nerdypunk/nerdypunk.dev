@@ -1,7 +1,7 @@
 // Adapted from js/regl/main.js in Rezmason's Matrix digital rain (https://github.com/Rezmason/matrix,
 // MIT, see LICENSE) to run as a page background: only the rain, bloom and palette passes; no
-// fullscreen-on-double-click, no window.onresize takeover; the canvas follows its own box; and the
-// screen is only redrawn on frames that were actually rendered.
+// fullscreen-on-double-click, no window.onresize takeover; the canvas follows its own box; the
+// screen is only redrawn on frames that were actually rendered; and it runs on its own clock.
 import makeConfig from "./js/config.js";
 import makeRain from "./js/regl/rainPass.js";
 import makeBloomPass from "./js/regl/bloomPass.js";
@@ -37,7 +37,9 @@ export default async (canvas, { version, ...overrides } = {}) => {
 	const regl = createREGL({ canvas, pixelRatio: 1, extensions, optionalExtensions });
 
 	const lkg = await getLKG(false, true);
-	const fullScreenQuad = makeFullScreenQuad(regl);
+	// Every pass reads time and tick from this scope's context, so this clock drives the animation.
+	const clock = { time: 0, tick: 0 };
+	const fullScreenQuad = makeFullScreenQuad(regl, {}, { time: () => clock.time, tick: () => clock.tick });
 	const context = { regl, config, lkg };
 	const pipeline = makePipeline(context, [makeRain, makeBloomPass, makePalettePass]);
 	const drawToScreen = regl({ uniforms: { tex: pipeline[pipeline.length - 1].outputs.primary } });
@@ -45,26 +47,36 @@ export default async (canvas, { version, ...overrides } = {}) => {
 
 	const targetFrameTimeMilliseconds = 1000 / config.fps;
 	const size = { width: 0, height: 0 };
-	let last = NaN;
+	// Render on every Nth display refresh, the N that keeps closest to config.fps without going
+	// under it: every refresh at 60/75Hz, every 2nd at 120/144Hz. Even spacing, so no judder.
+	const intervals = [];
+	let previousFrame = NaN;
+	let refreshCount = 0;
+	let lastRendered = NaN;
 	let firstFrame;
 	const shown = new Promise((resolve) => (firstFrame = resolve));
 
 	regl.frame(({ viewportWidth, viewportHeight }) => {
 		const now = regl.now() * 1000;
-		if (isNaN(last)) last = now - targetFrameTimeMilliseconds;
+		if (!isNaN(previousFrame)) {
+			intervals.push(now - previousFrame);
+			if (intervals.length > 30) intervals.shift();
+		}
+		previousFrame = now;
+		const refresh = [...intervals].sort((a, b) => a - b)[intervals.length >> 1] || targetFrameTimeMilliseconds;
+		const everyNth = Math.max(1, Math.floor(targetFrameTimeMilliseconds / refresh + 0.05));
 		const resized = size.width !== viewportWidth || size.height !== viewportHeight;
-		// At 60fps or more, draw every display frame (as upstream does): a time gate would skip
-		// refreshes unevenly on 75/144Hz screens and judder. Below that, leaving a frame undrawn
-		// keeps the last one on screen, so the page isn't recomposited.
-		const throttled = config.fps < 60 && now - last < targetFrameTimeMilliseconds;
-		if (throttled && !resized) return;
-		while (now - targetFrameTimeMilliseconds > last) last += targetFrameTimeMilliseconds;
+		// A skipped refresh leaves the last frame on screen, so the page isn't recomposited.
+		if (refreshCount++ % everyNth !== 0 && !resized) return;
 
 		if (resized) {
 			size.width = viewportWidth;
 			size.height = viewportHeight;
 			for (const step of pipeline) step.setSize(viewportWidth, viewportHeight);
 		}
+		clock.time += Math.min(isNaN(lastRendered) ? 0 : now - lastRendered, 100) / 1000;
+		clock.tick += 1;
+		lastRendered = now;
 		fullScreenQuad(() => {
 			for (const step of pipeline) step.execute(true);
 			drawToScreen();
