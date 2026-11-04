@@ -277,6 +277,9 @@ body::after {
 .blog-post p, .entry-preview p { font-family: var(--font-heading); }
 .blog-post__media { border-radius: 16px; background: rgba(5,6,15,.4); }
 .blog-post__media figcaption { font-size: 12px; color: #9da7ba; }
+/* A YouTube embed in a post, framed like the post images and sized like the portfolio videos. */
+.blog-post__media--video { margin-top: 20px; }
+.blog-post__media iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 8px; background: #000; }
 .lightbox__window { background: var(--glass-strong); border-color: var(--line); border-radius: 16px; box-shadow: var(--frost-edge), 0 16px 32px rgba(0,0,0,.3); }
 .boot-loader { background: var(--tokyo-atmosphere), var(--canvas-depth); }
 .boot-loader::before { background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255,255,255,.025) 3px 4px); }
