@@ -334,9 +334,11 @@ body::after {
   .steam-widget__actions { flex-direction: column; align-items: stretch; padding: 10px 12px; gap: 8px; }
   .steam-widget__actions > span { padding-left: 0; text-align: center; }
   .steam-widget__actions a { width: 100%; margin-left: 0; }
-  .menu-bar__icons { display: flex; flex-wrap: nowrap; justify-content: center; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+  /* One row: the icons shrink a little when the row is tight, and if it still overflows it
+     starts at the left edge (safe center) so no icon is cut off out of scroll reach. */
+  .menu-bar__icons { display: flex; flex-wrap: nowrap; justify-content: center; justify-content: safe center; gap: 4px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
   .menu-bar__icons::-webkit-scrollbar { display: none; }
-  .menu-bar__icons a { width: 40px; height: 40px; padding: 9px; flex: 0 0 auto; }
+  .menu-bar__icons a { width: auto; height: auto; aspect-ratio: 1; min-width: 0; padding: 8px; flex: 0 1 40px; }
 }
 
 /* Hidden portfolio page */
@@ -1473,6 +1475,10 @@ button.portfolio-cta-btn { font: inherit; cursor: pointer; }
 }
 @media (max-width: 640px) {
   .icon-strip-panel .icon-strip { --links-banner-height: 200px; }
+}
+/* Narrow phones fit four icons per row, which left the ninth alone; three rows of three instead. */
+@media (max-width: 400px) {
+  .icon-strip-panel .icon-strip { display: grid; grid-template-columns: repeat(3, 48px); justify-content: center; align-content: center; }
 }
 
 /* Shader layers (shader-art.js). Each fades in only once its first frame is drawn. */
