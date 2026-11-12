@@ -159,3 +159,34 @@
     strip.classList.add('is-loaded');
   })();
 })();
+
+// Edu & Science Lab videos: the poster is a button until clicked, then the real video loads and
+// plays. Starting one pauses the other.
+(() => {
+  const facades = document.querySelectorAll('.lab-video__facade[data-video-src]');
+  const players = [];
+
+  facades.forEach((facade) => {
+    facade.addEventListener('click', () => {
+      const status = facade.closest('.lab-video')?.querySelector('[data-video-status]');
+      const video = document.createElement('video');
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = 'auto';
+      video.poster = facade.querySelector('img')?.src ?? '';
+      video.src = facade.dataset.videoSrc;
+      video.setAttribute('aria-label', facade.getAttribute('aria-label').replace(/^Play the /, ''));
+      video.addEventListener('play', () => {
+        players.forEach((other) => { if (other !== video) other.pause(); });
+        if (status) status.textContent = 'PLAY';
+      });
+      video.addEventListener('pause', () => { if (status) status.textContent = 'PAUSE'; });
+      video.addEventListener('ended', () => { if (status) status.textContent = 'STOP'; });
+      players.push(video);
+      facade.replaceWith(video);
+      video.focus();
+      const playback = video.play();
+      if (playback) playback.catch(() => {});
+    });
+  });
+})();

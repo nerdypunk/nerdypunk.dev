@@ -18,9 +18,9 @@
       if (sessionStorage.getItem("npdBootSeen") === "1") document.documentElement.classList.add("boot-seen");
     } catch {}
   </script>
-  <link rel="stylesheet" href="styles.css?v=20261110">
-  <link rel="stylesheet" href="design.css?v=20261110">
-  <script src="effects.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261111">
+  <link rel="stylesheet" href="design.css?v=20261111">
+  <script src="effects.js?v=20261111" defer></script>
   <script type="module" src="contact-art.js"></script>
   <script type="module" src="blog-art.js"></script>
   <script type="module" src="shader-art.js"></script>
@@ -71,6 +71,7 @@
         <nav class="menu-bar" aria-label="Site menu">
           <a href="#top" aria-current="page">Home</a>
           <a href="#steam-widget-title">Wishlist Game</a>
+          <a href="#tinkering">Tinkering</a>
           <a href="blog.html">Blog</a>
           <a href="#contact">Contact</a>
           <div class="menu-bar__icons" aria-label="Social links">
@@ -121,7 +122,7 @@
                     I'm NerdyPunkDev, a solo developer who's currently building Spaceman Memories. Feel free to roam around, if you wanna see my work check out my <a href="https://twitter.com/NerdyPunkDev" target="_blank" rel="noreferrer">Twitter</a> and if you want to read my thoughts check out my blog.
                   </p>
                   <p class="hero-panel__tagline">
-                    BTW, I'm also the founder and creator of the <a href="https://nerdypunk.github.io/Honduras-Indie-Game-Showcase/" target="_blank" rel="noreferrer">Honduras Indie Game Showcase</a> and <a href="https://pipodojo.com/" target="_blank" rel="noreferrer">Pipodojo</a>.
+                    BTW, I'm also the founder and creator of the <a href="https://nerdypunk.github.io/Honduras-Indie-Game-Showcase/" target="_blank" rel="noreferrer">Honduras Indie Game Showcase</a>, <a href="https://pipodojo.com/" target="_blank" rel="noreferrer">Pipodojo</a> and <a href="https://copanquest.todosenlaweb.com" target="_blank" rel="noreferrer">CopánQuest</a>.
                   </p>
                 </div>
               </div>
@@ -152,6 +153,51 @@
               <p class="badge-strip__label" id="featured-by-title">Featured by</p>
               <div class="badge-strip" data-badge-strip aria-label="Badges">
                 <div class="badge-strip__track" data-badge-track></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel lab-panel" id="tinkering" aria-labelledby="lab-title">
+            <div class="panel__title" id="lab-title">Edu &amp; Science Lab.exe<span class="section-loader section-loader--lab" aria-hidden="true"></span></div>
+            <div class="panel__body">
+              <p class="lab-panel__intro"><span>I like to tinker with ideas, even when I don't know where they'll take me.</span> <span>Here are a couple of those experiments that grew into real projects.</span></p>
+              <div class="lab-panel__grid">
+                <div class="video-player lab-video" aria-label="CopánQuest video">
+                  <div class="video-player__topbar">
+                    <span>Now Playing: CopánQuest</span>
+                    <span>00:54</span>
+                  </div>
+                  <div class="video-player__screen">
+                    <button class="lab-video__facade" type="button" data-video-src="Videos/CopanQuest.mp4" aria-label="Play the CopánQuest video">
+                      <img src="Videos/CopanQuest-poster.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+                      <span class="lab-video__play" aria-hidden="true"></span>
+                    </button>
+                    <div class="video-player__scanlines" aria-hidden="true"></div>
+                  </div>
+                  <div class="video-player__controls">
+                    <span data-video-status>READY</span>
+                    <span>How CopánQuest is built</span>
+                    <a href="https://copanquest.todosenlaweb.com" target="_blank" rel="noreferrer">Visit site</a>
+                  </div>
+                </div>
+                <div class="video-player lab-video" aria-label="Pipodojo video">
+                  <div class="video-player__topbar">
+                    <span>Now Playing: Pipodojo</span>
+                    <span>01:09</span>
+                  </div>
+                  <div class="video-player__screen">
+                    <button class="lab-video__facade" type="button" data-video-src="Videos/Pipodojo.mp4" aria-label="Play the Pipodojo video">
+                      <img src="Videos/Pipodojo-poster.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async">
+                      <span class="lab-video__play" aria-hidden="true"></span>
+                    </button>
+                    <div class="video-player__scanlines" aria-hidden="true"></div>
+                  </div>
+                  <div class="video-player__controls">
+                    <span data-video-status>READY</span>
+                    <span>Pipodojo demo film</span>
+                    <a href="https://pipodojo.com/" target="_blank" rel="noreferrer">Visit site</a>
+                  </div>
+                </div>
               </div>
             </div>
           </section>

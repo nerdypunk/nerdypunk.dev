@@ -1497,8 +1497,9 @@ body::after {
 
 .menu-bar > a:nth-child(1)::after { content: "ホーム"; }
 .menu-bar > a:nth-child(2)::after { content: "予約登録"; }
-.menu-bar > a:nth-child(3)::after { content: "通信ログ"; }
-.menu-bar > a:nth-child(4)::after { content: "接続"; }
+.menu-bar > a:nth-child(3)::after { content: "実験室"; }
+.menu-bar > a:nth-child(4)::after { content: "通信ログ"; }
+.menu-bar > a:nth-child(5)::after { content: "接続"; }
 
 .address-bar > span {
   font-size: 0;

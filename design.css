@@ -1529,3 +1529,83 @@ body::before { animation: gridFloat 24s steps(112, end) infinite, gridGlitch 8s 
   .blog-stream .blog-post { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
   .blog-stream .blog-post + .blog-post { padding-top: 24px; border-top: 1px solid var(--line); }
 }
+
+/* Edu & Science Lab: two click-to-play videos. Until clicked only the poster loads; the click
+   swaps in the real <video>, so the MP4s never download for visitors who just scroll past. */
+.section-loader--lab { --loader-duration: 1.18s; --loader-delay: -.74s; }
+#lab-title::after { content: "研究室 // LAB"; }
+.lab-panel__intro {
+  max-width: 640px;
+  text-wrap: balance;
+  margin: 0 auto 24px;
+  text-align: center;
+  font: 400 14px/1.8 var(--font-terminal);
+  color: #c7d3ea;
+}
+.lab-panel__intro span { display: block; }
+.lab-panel__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.lab-video { height: auto; }
+.lab-video .video-player__controls a {
+  color: #7ae2ff;
+  text-decoration: underline;
+  text-decoration-color: rgba(122,226,255,.4);
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.lab-video .video-player__controls a:hover { color: #c4f4ff; text-decoration-color: currentColor; }
+.lab-video__facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #000;
+  cursor: pointer;
+}
+.lab-video__facade img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .82;
+  transition: opacity .2s ease;
+}
+.lab-video__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--line-bright);
+  border-radius: 50%;
+  background: rgba(3,7,15,.55);
+  box-shadow: var(--frost-edge);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translate(-50%, -50%);
+  transition: background .2s ease, transform .2s ease;
+}
+.lab-video__play::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  border-style: solid;
+  border-width: 11px 0 11px 18px;
+  border-color: transparent transparent transparent #d1e4fa;
+  transform: translate(-50%, -50%);
+}
+.lab-video__facade:hover img, .lab-video__facade:focus-visible img { opacity: 1; }
+.lab-video__facade:hover .lab-video__play, .lab-video__facade:focus-visible .lab-video__play {
+  background: rgba(122,226,255,.18);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+.lab-video__facade:focus-visible { outline: 2px solid #7ae2ff; outline-offset: 2px; }
+@media (max-width: 760px) {
+  .lab-panel__grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .lab-panel__intro { margin-bottom: 20px; font-size: 13px; }
+  .lab-video__play { width: 52px; height: 52px; }
+}
