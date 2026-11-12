@@ -17,10 +17,17 @@
     try {
       if (sessionStorage.getItem("npdBootSeen") === "1") document.documentElement.classList.add("boot-seen");
     } catch {}
+    // shader-art.js uses WebGPU. The first requestAdapter() of a browser session holds up Chrome's frames
+    // for ~0.4s while it enumerates GPUs and monitors; asking now, before the first paint, keeps that
+    // freeze off the loader and the page (later calls are instant). Same skips as shader-art.js.
+    if ("gpu" in navigator && !matchMedia("(prefers-reduced-motion: reduce), (max-width: 760px), (max-width: 1024px) and (hover: none) and (pointer: coarse)").matches) {
+      navigator.gpu.requestAdapter().catch(() => {});
+    }
   </script>
-  <link rel="stylesheet" href="styles.css?v=20261111">
-  <link rel="stylesheet" href="design.css?v=20261111">
-  <script src="effects.js?v=20261111" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261112">
+  <link rel="stylesheet" href="design.css?v=20261112">
+  <script type="module" src="assets/ldrs/quantum.js"></script>
+  <script src="effects.js?v=20261112" defer></script>
   <script type="module" src="contact-art.js"></script>
   <script type="module" src="blog-art.js"></script>
   <script type="module" src="shader-art.js"></script>
@@ -34,11 +41,7 @@
       </div>
       <div class="boot-loader__body">
         <span class="boot-loader__command" aria-hidden="true">C:\NPD\GATEWAY&gt; AUTH_SEQUENCE</span>
-        <span class="boot-loader__track" aria-hidden="true">
-          <span class="boot-loader__block">█</span>
-          <span class="boot-loader__block">▓</span>
-          <span class="boot-loader__block">▒</span>
-        </span>
+        <l-quantum class="boot-loader__quantum" size="124" speed="1.75" color="#7ae2ff" aria-hidden="true"></l-quantum>
         <span class="boot-loader__readout">
           <span class="boot-loader__message boot-loader__message--identifying">Identifying...</span>
           <span class="boot-loader__message boot-loader__message--granted">Access Granted Nerd</span>
@@ -122,7 +125,7 @@
                     I'm NerdyPunkDev, a solo developer who's currently building Spaceman Memories. Feel free to roam around, if you wanna see my work check out my <a href="https://twitter.com/NerdyPunkDev" target="_blank" rel="noreferrer">Twitter</a> and if you want to read my thoughts check out my blog.
                   </p>
                   <p class="hero-panel__tagline">
-                    BTW, I'm also the founder and creator of the <a href="https://nerdypunk.github.io/Honduras-Indie-Game-Showcase/" target="_blank" rel="noreferrer">Honduras Indie Game Showcase</a>, <a href="https://pipodojo.com/" target="_blank" rel="noreferrer">Pipodojo</a> and <a href="https://copanquest.todosenlaweb.com" target="_blank" rel="noreferrer">CopánQuest</a>.
+                    I'm also the founder and creator of <a href="https://saintmikenode.org" target="_blank" rel="noreferrer">Saint Mike Node</a>, the <a href="https://nerdypunk.github.io/Honduras-Indie-Game-Showcase/" target="_blank" rel="noreferrer">Honduras Indie Game Showcase</a>, <a href="https://pipodojo.com/" target="_blank" rel="noreferrer">Pipodojo</a> and <a href="https://copanquest.todosenlaweb.com" target="_blank" rel="noreferrer">CopánQuest</a>. BTW, I'm also an OpenAI Codex Ambassador lol...
                   </p>
                 </div>
               </div>

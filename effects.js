@@ -19,11 +19,12 @@
 
     const setProgress = (value) => {
       const boundedValue = Math.min(100, Math.max(0, value));
-      progress?.style.setProperty("--boot-progress", `${boundedValue / 100}`);
       progress?.setAttribute("aria-valuenow", `${boundedValue}`);
       if (percent) percent.textContent = `${String(boundedValue).padStart(3, "0")}%`;
     };
 
+    // The bar itself is a CSS animation (styles.css) that runs on the compositor; this only keeps
+    // the percentage and aria value in step with it.
     const updateProgress = (now) => {
       const elapsed = now - progressStartedAt;
       const value = Math.min(100, Math.round((elapsed / BOOT_LOADER_PROGRESS_DURATION) * 100));
@@ -42,6 +43,7 @@
     window.setTimeout(() => {
       bootLoader.remove();
       document.documentElement.classList.remove("is-booting");
+      document.dispatchEvent(new Event("npd:booted"));
     }, BOOT_LOADER_DURATION);
   }
 

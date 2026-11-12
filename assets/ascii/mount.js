@@ -1,8 +1,8 @@
 export function mount(el, piece, options = {}) {
     const make = typeof piece === "function" ? piece : piece.default;
     const meta = typeof piece === "function" ? {} : piece.meta;
-    const { fps = meta.fps ?? 30, motion = false, ...rest } = { ...meta.options, ...options };
-    const frame = make(rest);
+    // `src` (the piece's module URL) builds and runs the piece in a worker, off the main thread.
+    const { fps = meta.fps ?? 30, motion = false, src, ...rest } = { ...meta.options, ...options };
     const { cols = 80, rows = 24, palette, ground, cell = 2 } = meta;
     const canvas = el instanceof HTMLCanvasElement ? el : null;
     // Colour only on a canvas: in a <pre> a coloured piece is text in one ink too.
@@ -12,11 +12,54 @@ export function mount(el, piece, options = {}) {
         const c = rgb(css);
         return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2] < 128;
     };
-    const env = () => ({ paper: canvas && ground ? !dark(ground) : dark(getComputedStyle(el).color), color });
+    const paper = () => (canvas && ground ? !dark(ground) : dark(getComputedStyle(el).color));
     let t = 0;
-    let draw = () => {
-        el.textContent = frame(t, env());
+    let shown = "";
+    let paint = (text) => {
+        el.textContent = text;
     };
+    // Frames come from a worker when there is one (one request in flight at a time; a tick that
+    // finds it busy is skipped), else from the piece run here, built on first use.
+    let frame;
+    let worker = null;
+    let pending = false;
+    const draw = () => {
+        if (worker) {
+            if (!pending) {
+                pending = true;
+                worker.postMessage({ type: "frame", t, paper: paper() });
+            }
+            return;
+        }
+        frame ??= make(rest);
+        shown = frame(t, { paper: paper(), color });
+        paint(shown);
+    };
+    if (src && typeof Worker === "function") {
+        const fallBack = () => {
+            worker?.terminate();
+            worker = null;
+            pending = false;
+            draw();
+        };
+        try {
+            worker = new Worker(new URL("./scene-worker.js", import.meta.url), { type: "module" });
+            worker.onmessage = ({ data }) => {
+                if (data.type === "error")
+                    return fallBack();
+                pending = false;
+                if (color && data.color)
+                    color.set(data.color);
+                shown = data.text;
+                paint(shown);
+            };
+            worker.onerror = fallBack;
+            worker.postMessage({ type: "init", src: new URL(src, location.href).href, options: rest, cells: color ? cols * rows : 0 });
+        }
+        catch {
+            worker = null;
+        }
+    }
     // On a canvas each (character, colour) pair is drawn once into an atlas and
     // copied from there into its cell, and a frame redraws only the cells that
     // changed since the last one: on a phone a scene's 20,000 copies a frame were
@@ -76,14 +119,13 @@ export function mount(el, piece, options = {}) {
             slots.set(key, s);
             return s;
         };
-        draw = () => {
+        paint = (text) => {
             if (!palette && getComputedStyle(canvas).color !== ink) {
                 ink = getComputedStyle(canvas).color;
                 slots.clear();
                 actx.clearRect(0, 0, atlas.width, atlas.height);
                 full = true;
             }
-            const text = frame(t, env());
             if (ground)
                 ctx.fillStyle = ground;
             if (full) {
@@ -125,14 +167,19 @@ export function mount(el, piece, options = {}) {
         ro = new ResizeObserver(() => {
             if (canvas.clientWidth !== width) {
                 size();
-                draw();
+                // Redraw the frame on screen at the new size; the next tick brings a new one.
+                if (shown)
+                    paint(shown);
             }
         });
         ro.observe(canvas);
     }
     draw();
     if (!fps)
-        return () => ro?.disconnect();
+        return () => {
+            ro?.disconnect();
+            worker?.terminate();
+        };
     const still = matchMedia("(prefers-reduced-motion: reduce)");
     let raf = 0;
     let last = 0;
@@ -167,6 +214,7 @@ export function mount(el, piece, options = {}) {
     return () => {
         io.disconnect();
         ro?.disconnect();
+        worker?.terminate();
         cancelAnimationFrame(raf);
         raf = 0;
         document.removeEventListener("visibilitychange", run);

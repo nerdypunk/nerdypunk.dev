@@ -288,6 +288,8 @@ body::after {
 .boot-loader__title::before { background: var(--pink); box-shadow: none; }
 .boot-loader__body { background: none; }
 .boot-loader__progress-rail span { background: #b9f5ff; box-shadow: none; }
+.boot-loader__progress-rail { border-color: rgba(122,226,255,.42); box-shadow: inset 0 0 10px rgba(0,0,0,.42); }
+.boot-loader__progress-meta span:last-child { color: #7ae2ff; text-shadow: 0 0 10px rgba(122,226,255,.35); }
 :focus-visible { outline: 2px solid #b6d9fc; outline-offset: 4px; }
 @media (max-width: 1100px) {
   .menu-bar__icons { margin-left: 0; }
@@ -1609,3 +1611,9 @@ body::before { animation: gridFloat 24s steps(112, end) infinite, gridGlitch 8s 
   .lab-panel__intro { margin-bottom: 20px; font-size: 13px; }
   .lab-video__play { width: 52px; height: 52px; }
 }
+
+/* Hero intro: long project names wrapped as a block left ragged gaps, so they flow like the rest
+   of the text, and the two paragraphs get a little air between them. */
+.hero-panel__tagline a { white-space: normal; }
+.hero-panel__tagline { text-wrap: pretty; }
+.hero-panel__tagline + .hero-panel__tagline { margin-top: 12px; }

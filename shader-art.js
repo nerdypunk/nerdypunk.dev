@@ -251,4 +251,10 @@ const idle = (cb) => (window.requestIdleCallback ? requestIdleCallback(cb, { tim
 const loaded = document.readyState === 'complete'
   ? Promise.resolve()
   : new Promise((resolve) => window.addEventListener('load', resolve, { once: true }));
-Promise.all([loaded, backgroundShown]).then(() => idle(start));
+// On a first visit the boot loader is up for 3s; starting WebGPU under it stalled the screen right
+// before the loader dissolved, so the effects wait for it to go (effects.js runs first and sets
+// is-booting, then fires npd:booted).
+const booted = document.documentElement.classList.contains('is-booting')
+  ? new Promise((resolve) => document.addEventListener('npd:booted', resolve, { once: true }))
+  : Promise.resolve();
+Promise.all([loaded, backgroundShown, booted]).then(() => idle(start));

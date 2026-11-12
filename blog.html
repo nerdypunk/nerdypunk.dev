@@ -18,9 +18,10 @@
       if (sessionStorage.getItem("npdBootSeen") === "1") document.documentElement.classList.add("boot-seen");
     } catch {}
   </script>
-  <link rel="stylesheet" href="styles.css?v=20261111">
-  <link rel="stylesheet" href="design.css?v=20261111">
-  <script src="effects.js?v=20261111" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261112">
+  <link rel="stylesheet" href="design.css?v=20261112">
+  <script type="module" src="assets/ldrs/quantum.js"></script>
+  <script src="effects.js?v=20261112" defer></script>
 </head>
 <body>
   <div class="boot-loader" data-boot-loader role="status" aria-live="polite" aria-label="Identifying... Access Granted Nerd">
@@ -31,11 +32,7 @@
       </div>
       <div class="boot-loader__body">
         <span class="boot-loader__command" aria-hidden="true">C:\NPD\GATEWAY&gt; AUTH_SEQUENCE</span>
-        <span class="boot-loader__track" aria-hidden="true">
-          <span class="boot-loader__block">█</span>
-          <span class="boot-loader__block">▓</span>
-          <span class="boot-loader__block">▒</span>
-        </span>
+        <l-quantum class="boot-loader__quantum" size="124" speed="1.75" color="#7ae2ff" aria-hidden="true"></l-quantum>
         <span class="boot-loader__readout">
           <span class="boot-loader__message boot-loader__message--identifying">Identifying...</span>
           <span class="boot-loader__message boot-loader__message--granted">Access Granted Nerd</span>
